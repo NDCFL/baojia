@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<link rel="stylesheet" href="css/amazeui.min.css" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/css/amazeui.min.css" type="text/css" />
+		<link rel="stylesheet" href="css/style.css" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/css/style.css" type="text/css" />
+	</head>
+
+	<body>
+		<!--<header data-am-widget="header" class="am-header am-header-default jz">
+			<div class="am-header-left am-header-nav">
+				<i class="am-icon-calendar"  style="color: gray;font-size: 26px;"></i>
+			</div>
+			<h1 class="am-header-title">
+		          <a href="#title-link" class="">瑞蓝报价</a>
+		      </h1>
+		</header>-->
+		<div style="background-image: url(img/bg.png);height: 100px;" class="am-slider am-slider-default"> 
+			<div style="width: 45%;float: left;margin-left: 3%;height: 100px;">
+				<p style="padding-top: 30px;color: #fff;margin-bottom: -20px;padding-left: 25px;" id="xq">星期三</p>
+				<p>
+					<span style="color: #fff;padding-left: 10px;" id="ny">2018年3月</span>
+					<span style="font-size: 30px;color: #fff;" id="ri">14号</span>
+				</p>
+			</div>
+			<div style="width: 45%;float: left;margin-left: 5%;height: 100px;">
+				<div>
+					<input id="testView" type="hidden" onchange="changeTimes(this.value);" />
+					<i class="am-icon-calendar am-icon-lg" id="test28"  style="position:absolute;color: #fff;padding-left: 40%;padding-top: 40px;right: 25%;font-size: 10px;"></i>
+					<i class="am-icon-refresh am-icon-spin"  style="position:absolute;color: #fff;font-size: 26px;right: 10%;top: 30%;"></i>
+				</div>
+			</div>
+	        <!--<ul class="am-slides">  
+	            <li><img src="images/banner.png"></li>  
+	            <li><img src="images/banner1.png"></li>  
+	        </ul>  -->
+		</div>
+		<div class="reg2">
+			<div style="margin-bottom: 10px;">
+				<span class="am-icon-home am-icon-sm" style="color: #C10802;"></span>
+				<span style="font-family: '微软雅黑';font-weight: 800;">实时房源动态</span>
+			</div>
+			<a href="about.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/about.html">
+				<div class="brand-left" style="width: 33%;text-align: center;background-color: #FFFFFF;">
+					<h2 style="color: #C10802;font-size: 26px;">5000</h2>
+					<p >&nbsp;&nbsp;</p>
+					<p style="margin-top: -20px;text-align: center;color: #666;">库存房量</p>
+					<p style="color: #666;font-size: 10px;" class="yue">2018-03-12</p>
+				</div>
+			</a>
+			<a href="about.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/about.html">
+				<div class="brand-left" style="width: 33%;text-align: center;background-color: #FFFFFF;">
+					<h2 style="color: #C10802;font-size: 26px;">5000</h2>
+					<p >&nbsp;&nbsp;</p>
+					<p style="margin-top: -20px;text-align: center;color: #666;">平均房价</p>
+					<p style="color: #666;font-size: 10px;" class="yue">2018-03-12</p>
+				</div>
+			</a>
+			<a href="about.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/about.html">
+				<div class="brand-left" style="width: 33%;text-align: center;background-color: #FFFFFF;">
+					<h2 style="color: #C10802;font-size: 26px;">5000</h2>
+					<p >&nbsp;&nbsp;</p>
+					<p style="margin-top: -20px;text-align: center;color: #666;">报价商家</p>
+					<p style="color: #666;font-size: 10px;" class="yue">2018-03-12</p>
+				</div>
+			</a>
+			<div style="height: 80px;"></div>
+		</div>
+		<div style="margin-left: 15px;margin-top: 20px;" class="doc-example">
+			<span class="am-icon-home am-icon-sm" style="color: #C10802;"></span>
+			<span style="font-family: '微软雅黑';font-weight: 800;">实时房型报价</span>
+		</div>
+		<ul class="brand" style="border: none;">
+			<li>
+				<a href="about.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/about.html">
+					<div class="brand-left">
+						<i class="am-icon-home am-icon-sm"></i>
+						<div class="text">
+							<h2 style="color: #009CDA;">特价大床房</h2>
+							<p >库存&nbsp;&nbsp;25间</p>
+							<p style="color: #BE590A;">均价&nbsp;&nbsp;￥25</p>
+							<p style="color: #009CDA;">报价商家数&nbsp;&nbsp;25家</p>
+						</div>
+					</div>
+				</a>
+				<a href="about.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/about.html">
+					<div class="brand-left">
+						<i class="am-icon-home am-icon-sm"></i>
+						<div class="text">
+							<h2 style="color: #009CDA;">特价大床房</h2>
+							<p >库存&nbsp;&nbsp;25间</p>
+							<p style="color: #BE590A;">均价&nbsp;&nbsp;￥25</p>
+							<p style="color: #009CDA;">报价商家数&nbsp;&nbsp;25家</p>
+						</div>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="about.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/about.html">
+					<div class="brand-left">
+						<i class="am-icon-home am-icon-sm"></i>
+						<div class="text">
+							<h2 style="color: #009CDA;">特价大床房</h2>
+							<p >库存:25间</p>
+							<p style="color: #BE590A;">均价&nbsp;&nbsp;￥25</p>
+							<p style="color: #009CDA;">报价商家数&nbsp;&nbsp;25家</p>
+						</div>
+					</div>
+				</a>
+				<a href="about.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/about.html">
+					<div class="brand-left">
+						<i class="am-icon-home am-icon-sm"></i>
+						<div class="text">
+							<h2 style="color: #009CDA;">特价大床房</h2>
+							<p >库存:25间</p>
+							<p style="color: #BE590A;">均价:￥25</p>
+							<p style="color: #009CDA;">报价商家数:25家</p>
+						</div>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="about.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/about.html">
+					<div class="brand-left">
+						<i class="am-icon-home am-icon-sm"></i>
+						<div class="text">
+							<h2 style="color: #009CDA;">特价大床房</h2>
+							<p >库存:25间</p>
+							<p style="color: #BE590A;">均价:￥25</p>
+							<p style="color: #009CDA;">报价商家数:25家</p>
+						</div>
+					</div>
+				</a>
+				<a href="about.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/about.html">
+					<div class="brand-left">
+						<i class="am-icon-home am-icon-sm"></i>
+						<div class="text">
+							<h2 style="color: #009CDA;">特价大床房</h2>
+							<p >库存:25间</p>
+							<p style="color: #BE590A;">均价:￥25</p>
+							<p style="color: #009CDA;">报价商家数:25家</p>
+						</div>
+					</div>
+				</a>
+			</li>
+		</ul>
+		<div class="doc-example">
+			<div style="margin-left: 15px;margin-top: 20px;">
+				<span class="am-icon-home am-icon-sm" style="color: #C10802;"></span>
+				<span style="font-family: '微软雅黑';font-weight: 800;">业主圈</span>
+			</div>
+			<ul class="am-comments-list am-comments-list-flip">
+				<li class="am-comment">
+					<a href="#link-to-user-home"><img src="http://www.gravatar.com/avatar/1ecedeede84a44f371b9d8d656bb4265?d=mm&amp;s=96" alt="" class="am-comment-avatar" width="48" height="48"></a>
+					<div class="am-comment-main">
+						<header class="am-comment-hd">
+							<div class="am-comment-meta">
+								<a href="#link-to-user" class="am-comment-author">路人甲</a> 说 <time datetime="2013-07-27T04:54:29-07:00" title="2013年7月27日 下午7:54 格林尼治标准时间+0800">2014-7-13 0:03</time></div>
+						</header>
+						<div class="am-comment-bd">
+							<p>She's gone 我早知道<br>她将要 从我的生命中走掉<br>不再停留多一秒</p>
+						</div>
+					</div>
+				</li>
+				<li class="am-comment">
+					<a href="#link-to-user-home"><img src="http://www.gravatar.com/avatar/1ecedeede84a44f371b9d8d656bb4265?d=mm&amp;s=96" alt="" class="am-comment-avatar" width="48" height="48"></a>
+					<div class="am-comment-main">
+						<header class="am-comment-hd">
+							<div class="am-comment-meta">
+								<a href="#link-to-user" class="am-comment-author">路人甲</a> 说 <time datetime="2013-07-27T04:54:29-07:00" title="2013年7月27日 下午7:54 格林尼治标准时间+0800">2014-7-13 0:03</time></div>
+						</header>
+						<div class="am-comment-bd">
+							<p>She's gone 我早知道<br>她将要 从我的生命中走掉<br>不再停留多一秒</p>
+						</div>
+					</div>
+				</li>
+				<li class="am-comment">
+					<a href="#link-to-user-home"><img src="http://www.gravatar.com/avatar/1ecedeede84a44f371b9d8d656bb4265?d=mm&amp;s=96" alt="" class="am-comment-avatar" width="48" height="48"></a>
+					<div class="am-comment-main">
+						<header class="am-comment-hd">
+							<div class="am-comment-meta">
+								<a href="#link-to-user" class="am-comment-author">路人甲</a> 说 <time datetime="2013-07-27T04:54:29-07:00" title="2013年7月27日 下午7:54 格林尼治标准时间+0800">2014-7-13 0:03</time></div>
+						</header>
+						<div class="am-comment-bd">
+							<p>She's gone 我早知道<br>她将要 从我的生命中走掉<br>不再停留多一秒</p>
+						</div>
+					</div>
+				</li>
+				<li class="am-comment">
+					<a href="#link-to-user-home"><img src="http://www.gravatar.com/avatar/1ecedeede84a44f371b9d8d656bb4265?d=mm&amp;s=96" alt="" class="am-comment-avatar" width="48" height="48"></a>
+					<div class="am-comment-main">
+						<header class="am-comment-hd">
+							<div class="am-comment-meta">
+								<a href="#link-to-user" class="am-comment-author">路人甲</a> 说 <time datetime="2013-07-27T04:54:29-07:00" title="2013年7月27日 下午7:54 格林尼治标准时间+0800">2014-7-13 0:03</time></div>
+						</header>
+						<div class="am-comment-bd">
+							<p>She's gone 我早知道<br>她将要 从我的生命中走掉<br>不再停留多一秒</p>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div style="height: 49px;"></div>
+		<div data-am-widget="navbar" class="am-navbar  gm-foot am-no-layout" id="">
+			<ul class="am-navbar-nav am-cf am-avg-sm-4">
+				<li class="curr">
+					<a href="index.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/index.html" class="curr">
+						<span class="am-icon-home"></span>
+						<span class="am-navbar-label">首页</span>
+					</a>
+				</li>
+				<li>
+					<a href="baojia.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/order.html" class="">
+						<span class="am-icon-paypal"></span>
+						<span class="am-navbar-label">报价</span>
+					</a>
+				</li>
+				<li>
+					<a href="yezhuquan.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/order.html" class="">
+						<span class="am-icon-spinner am-icon-spin"></span>
+						<span class="am-navbar-label">业主圈</span>
+					</a>
+				</li>
+				<li>
+					<a href="main.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/member.html" class="">
+						<span class="am-icon-user"></span>
+						<span class="am-navbar-label">我的</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</body>
+<script type="text/javascript" src="js/jquery.min.js" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/js/jquery.min.js"></script>
+<script type="text/javascript" src="js/amazeui.min.js" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/js/amazeui.min.js"></script>
+<script type="text/javascript" src="js/hui.js"></script>
+<script type="text/javascript" src="js/laydate/laydate.js"></script>
+<!--<script>
+    $(function(){  
+        $('.am-slider').flexslider({  
+            playAfterPaused: 3000,  
+            animation: "fade",  
+            animationLoop: true,  
+            smoothHeight: true,  
+            animationSpeed: 4000  
+        });  
+    });   
+</script>  -->
+<script>
+	var show_day=new Array('星期日','星期一','星期二','星期三','星期四','星期五','星期六'); 
+	var time=new Date(); 
+	var year=time.getFullYear(); 
+	var month=time.getMonth()+1; 
+	var date=time.getDate(); 
+	var day=time.getDay(); 
+	var hour=time.getHours(); 
+	var minutes=time.getMinutes(); 
+	var second=time.getSeconds(); 
+	$("#xq").html(show_day[day]);
+	$("#ny").html(year+'年'+month+'月');
+	$("#ri").html(date+"号");
+    laydate.render({
+	    elem: '#test28'
+		,done: function(value, date){
+			document.getElementById("testView").value=value;
+			changeTimes(value);
+	    }
+    });
+	function getTimes(){
+		$("#test28").click();
+	}
+	function times(){
+		alert("afsasfs");
+	}
+	function a(){
+	    $("#test28").html("");
+	}
+	setInterval(a,1);
+	function changeTimes(val){
+		var show_day=new Array('星期日','星期一','星期二','星期三','星期四','星期五','星期六'); 
+		var time=new Date(val); 
+		var year=time.getFullYear(); 
+		var month=time.getMonth()+1; 
+		var date=time.getDate(); 
+		var day=time.getDay(); 
+		var hour=time.getHours(); 
+		var minutes=time.getMinutes(); 
+		var second=time.getSeconds(); 
+		$("#xq").html(show_day[day]);
+		$("#ny").html(year+'年'+month+'月');
+		$("#ri").html(date+"号");
+		$(".yue").html(year+"-"+(parseInt(month)<10?"0"+month:month)+"-"+(parseInt(date)<10?"0"+date:date));
+		hui.postJSON(
+		    rootpath+'/appUser/checkLogin',
+		    {
+		    	phone:'15679760329'
+		    
+		    },
+		    function(msg){
+		        console.log(msg);
+		        hui.toast(msg.result,1000);
+		    },
+		    function(e){
+		        hui.iconToast('读取消息失败', 'warn');
+		    }
+		);
+	}
+</script>
+</html>
