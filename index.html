@@ -45,7 +45,7 @@
 			</div>
 			<a href="about.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/about.html">
 				<div class="brand-left" style="width: 33%;text-align: center;background-color: #FFFFFF;">
-					<h2 style="color: #C10802;font-size: 26px;">5000</h2>
+					<h2 style="color: #C10802;font-size: 26px;" id="kc">0</h2>
 					<p >&nbsp;&nbsp;</p>
 					<p style="margin-top: -20px;text-align: center;color: #666;">库存房量</p>
 					<p style="color: #666;font-size: 10px;" class="yue">2018-03-12</p>
@@ -53,7 +53,7 @@
 			</a>
 			<a href="about.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/about.html">
 				<div class="brand-left" style="width: 33%;text-align: center;background-color: #FFFFFF;">
-					<h2 style="color: #C10802;font-size: 26px;">5000</h2>
+					<h2 style="color: #C10802;font-size: 26px;" id="jj">0</h2>
 					<p >&nbsp;&nbsp;</p>
 					<p style="margin-top: -20px;text-align: center;color: #666;">平均房价</p>
 					<p style="color: #666;font-size: 10px;" class="yue">2018-03-12</p>
@@ -61,7 +61,7 @@
 			</a>
 			<a href="about.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/about.html">
 				<div class="brand-left" style="width: 33%;text-align: center;background-color: #FFFFFF;">
-					<h2 style="color: #C10802;font-size: 26px;">5000</h2>
+					<h2 style="color: #C10802;font-size: 26px;" id="sj">0</h2>
 					<p >&nbsp;&nbsp;</p>
 					<p style="margin-top: -20px;text-align: center;color: #666;">报价商家</p>
 					<p style="color: #666;font-size: 10px;" class="yue">2018-03-12</p>
@@ -265,6 +265,7 @@
 	$("#xq").html(show_day[day]);
 	$("#ny").html(year+'年'+month+'月');
 	$("#ri").html(date+"号");
+	timesInfo(year+"-"+(parseInt(month)<10?"0"+month:month)+"-"+(parseInt(date)<10?"0"+date:date));
     laydate.render({
 	    elem: '#test28'
 		,done: function(value, date){
@@ -296,9 +297,7 @@
 		$("#ny").html(year+'年'+month+'月');
 		$("#ri").html(date+"号");
 		$(".yue").html(year+"-"+(parseInt(month)<10?"0"+month:month)+"-"+(parseInt(date)<10?"0"+date:date));
-		alert($("#testView").val());
-		
-		
+		timesInfo(year+"-"+(parseInt(month)<10?"0"+month:month)+"-"+(parseInt(date)<10?"0"+date:date));
 	}
 	hui.postJSON(
 	    rootpath+'/char/charList/',
@@ -336,5 +335,22 @@
 	        console.log(e);
 	    }
 	);
+	function timesInfo(val){
+		hui.postJSON(
+		    rootpath+'/priceItem/priceItemInfo',
+		    {
+		    	times:val
+		    },
+		    function(msg){
+		    	$("#kc").html(msg.sumHotel);
+		    	$("#jj").html(msg.sumPrice);
+		    	$("#sj").html(msg.countBusincess);
+		    },
+		    function(e){
+		        hui.iconToast('读取消息失败', 'warn');
+		        console.log(e);
+		    }
+		);
+	}
 </script>
 </html>
