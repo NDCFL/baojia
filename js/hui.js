@@ -1036,4 +1036,14 @@ Array.prototype.shuffle = function(){this.sort(function(){return Math.random() -
 		window.CustomEvent = CustomEvent;
 	}
 })();
-var rootpath = "http://192.168.199.201:8080";
+var rootpath = "http://192.168.199.201:8089";
+function getDates(val){
+	var date = new Date(val);
+    var y = date.getFullYear();
+    var m = date.getMonth() + 1;
+    var d = date.getDate();
+    var h = date.getHours();
+    var mi = date.getMinutes();
+    var ss = date.getSeconds();
+    return y + '-' + (parseInt(m)<10?"0"+m:m) + '-' + (parseInt(d)<10?"0"+d:d) + ' ' + (parseInt(h)<10?"0"+h:h) + ':' + (parseInt(mi)<10?"0"+mi:mi) + ':' + (parseInt(ss)<10?"0"+ss:ss);
+}

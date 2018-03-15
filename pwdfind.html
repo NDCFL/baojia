@@ -4,8 +4,6 @@
 		<meta charset="utf-8" />
 		<title></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-		<script type="text/javascript" src="js/jquery.min.js" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/js/jquery.min.js" ></script>
-		<script type="text/javascript" src="js/amazeui.min.js" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/js/amazeui.min.js"></script>
 		<link rel="stylesheet" href="css/amazeui.min.css" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/css/amazeui.min.css" type="text/css" />
 		<link rel="stylesheet" href="css/style.css" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/css/style.css" type="text/css" />
 	</head>
@@ -20,14 +18,119 @@
 		          <a href="#title-link" class="">找回密码</a>
 		      </h1>
         </header>
-        <div class="logo"><img src="images/logo.png" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/images/logo.png"/></div>
-        <input type="text" name="mobile" placeholder="请输入手机号" class="login-password">
-        <div class="yzm">
-	    	<input type="text" class="reg-yzm" placeholder="输入验证码">
-	    	<input type="button" class="yzm-hq" value="获取验证码">
-	    </div>
-	    <input type="password" name="password" placeholder="请输入密码" class="login-password">
-	    <input type="password" name="password" placeholder="确认密码" class="login-name">
-	    <input type="button" class="login-btn" value="立即提交">
+        <div class="logo"><img src="images/logo.png" ></div>
+        <div class="reg2">
+        	<input type="text" name="mobile" id="mobile" placeholder="请输入手机号" class="login-password">
+	        <div class="yzm">
+		    	<input type="text" class="reg-yzm" id="code" placeholder="输入验证码">
+		    	<input type="button" class="yzm-hq" id="sendCode" value="获取验证码">
+		    </div>
+		    <input type="password" name="password" id="pwd" placeholder="请输入密码" class="login-password">
+		    <input type="password" name="password" id="pwd1" placeholder="确认密码" class="login-name">
+		    <input type="button" class="login-btn" value="立即提交">
+        </div>
 	</body>
+	<script type="text/javascript" src="js/jquery.min.js" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/js/jquery.min.js" ></script>
+	<script type="text/javascript" src="js/amazeui.min.js" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/js/amazeui.min.js"></script>
+	<script type="text/javascript" src="js/hui.js"></script>
+	<script>
+		var wait=60;
+		function time(o) {
+	        if (wait == 0) {  
+	            o.removeAttribute("disabled");            
+	            $("#sendCode").val("获取短信验证码");  
+	            wait = 60;  
+	        } else {  
+	            o.setAttribute("disabled", true);  
+	            $("#sendCode").val("重新发送(" + wait + "s)");  
+	            wait--;  
+	            setTimeout(function() {  
+	                time(o)  
+	            },  
+	            1000)  
+	        }  
+	    }  
+	    $("#sendCode").click(function(){
+	    	var phone = $("#mobile").val();
+	    	if(!phone){
+	    		hui.toast('手机号不能为空', 1000);
+	    		return;
+	    	}
+	    	if(phone.length!=11){
+	    		hui.toast('手机号输入有误', 1000);
+	    		return;
+	    	}
+	    	time(this);
+	    	hui.postJSON(
+			    rootpath+'/businessMan/sendCode/',
+			    {
+			    	"mobile":phone,
+			    	"codeType":"findPwd"
+			    },
+			    function(msg){
+			    	console.log(msg);
+			    	if(msg.result=="fail"){
+			    		hui.toast(msg.message,1000);
+			    		wait = 0;
+			    	}else{
+			    		hui.toast(msg.message,1000);
+			    	}
+			    },
+			    function(e){
+			        hui.iconToast('读取消息失败', 'warn');
+			        console.log(e);
+			    }
+			);
+	    });
+	    $(".login-btn").click(function(){
+	    	var phone = $("#mobile").val();
+	    	var code = $("#code").val();
+	    	var pwd = $("#pwd").val();
+			var pwd1 = $("#pwd1").val();
+			if(!phone){
+	    		hui.toast('手机号不能为空', 1000);
+	    		return;
+	    	}
+	    	if(phone.length!=11){
+	    		hui.toast('手机号输入有误', 1000);
+	    		return;
+	    	}
+	    	if(!code){
+	    		hui.toast('手机验证码不能为空', 1000);
+	    		return;
+	    	}
+	    	if(!pwd){
+	    		hui.toast('密码不能为空', 1000);
+	    		return;
+	    	}
+	    	if(!pwd1){
+	    		hui.toast('确认密码不能为空', 1000);
+	    		return;
+	    	}
+	    	if(pwd!=pwd1){
+	    		hui.toast('两次密码输入不一致', 1000);
+	    		return;
+	    	}
+	    	hui.postJSON(
+			    rootpath+'/businessMan/findPassWord/',
+			    {
+			    	"mobile":phone,
+			    	"code":code,
+			    	"password":pwd
+			    },
+			    function(msg){
+			    	console.log(msg);
+			    	if(msg.result=="fail"){
+			    		hui.toast(msg.message,1000);
+			    	}else{
+			    		location.href="login.html";
+			    	}
+			    },
+			    function(e){
+			        hui.iconToast('读取消息失败', 'warn');
+			        console.log(e);
+			    }
+			);
+	    });
+	</script>
 </html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<link rel="stylesheet" href="css/amazeui.min.css" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/css/amazeui.min.css" type="text/css" />
+		<link rel="stylesheet" href="css/style.css" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/css/style.css" type="text/css" />
+	</head>
+	<body>
+		 <header data-am-widget="header" class="am-header am-header-default jz">
+		      <div class="am-header-left am-header-nav">
+		         <a href="javascript:history.back()" class="">
+					<i class="am-icon-chevron-left"></i>
+				</a>
+		      </div>
+		      <h1 class="am-header-title">
+		          <a href="#title-link" class="">关于我们</a>
+		      </h1>
+        </header>
+        <div class="logo"><img id="myimg" src="images/tx.png" style="width:150px;height:150px;border-radius: 100%;"/></div>
+        <div class="logotext">
+        	<h2 id="name">名称</h2>
+        	<p id="myname">酒店简称</p>
+        </div>
+        <div class="about">
+        	<div class="wxdy">
+        		<span>酒店简称</span>
+        		<em id="jc"></em>
+        	</div>
+        	<div class="wxdy">
+        		<span>酒店全称</span>
+        		<em id="qc"></em>
+        	</div>
+        	<div class="wxdy">
+        		<span>负责人</span>
+        		<em id="fzr"></em>
+        	</div>
+        	<div class="wxdy">
+        		<span>联系方式</span>
+        		<em id="lxfs"></em>
+        	</div>
+        	<div class="intro" id="bz">
+        		
+        	</div>
+        </div>
+	    <input type="file" name="file" style="display: none" id="file" onchange="getImg();" accept="image/*;capture=camera"/>
+	</body>
+	<script type="text/javascript" src="js/jquery.min.js" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/js/jquery.min.js" ></script>
+	<script type="text/javascript" src="js/ajaxfileupload.js"></script>
+	<script type="text/javascript" src="js/amazeui.min.js" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/js/amazeui.min.js"></script>
+	<script type="text/javascript" src="js/hui.js"></script>
+	<script>
+		var id = localStorage.getItem("id");
+		if(!id){
+			location.href="login.html";
+		}else{
+			refush(id);
+		}
+		$("#myimg").click(function(){
+			$("#file").click();
+		});
+		function getImg(){
+			$.ajaxFileUpload({  
+		        url : rootpath+"/businessMan/updateImg?id="+id,
+		        secureuri : false, //一般设置为false  
+		        fileElementId : 'file', //文件上传空间的id属性  <input type="file" id="file" name="file" />  
+		        type : 'post',  
+		        dataType : 'json', //返回值类型 一般设置为json  
+		        success : function(data, status){
+		        	if(status=="success"){
+		        		hui.toast('修改成功', 1000);
+		        	}
+		        	refush(id);
+		        },  
+		        error : function(data, status, e){  
+		        	hui.toast('修改失败，服务器繁忙', 1000);
+		        }  
+		    });  
+		}
+		function refush(id){
+			hui.getJSON(
+			    rootpath+'/businessMan/findBusinessMan/'+id,
+			    function(msg){
+			    	console.log(msg);
+			    	$("#myname").html(msg.hotelSinName);
+			    	$("#name").html(msg.name);
+			    	$("#jc").html(msg.hotelSinName);
+			    	$("#qc").html(msg.hotelName);
+			    	$("#fzr").html(msg.name);
+			    	$("#lxfs").html(msg.phone);
+			    	$("#bz").html(msg.remark);
+			    	if(msg.faceImg){
+			    		document.getElementById("myimg").src=rootpath+msg.faceImg;
+			    	}
+			    },
+			    function(e){
+			        hui.iconToast('读取消息失败', 'warn');
+			        console.log(e);
+			    }
+			);
+		}
+	</script>
+</html>

@@ -4,8 +4,6 @@
 		<meta charset="utf-8" />
 		<title></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-		<script type="text/javascript" src="js/jquery.min.js" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/js/jquery.min.js" ></script>
-		<script type="text/javascript" src="js/amazeui.min.js" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/js/amazeui.min.js"></script>
 		<link rel="stylesheet" href="css/amazeui.min.css" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/css/amazeui.min.css" type="text/css" />
 		<link rel="stylesheet" href="css/style.css" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/css/style.css" type="text/css" />
 	</head>
@@ -21,8 +19,8 @@
 		      </h1>
             </header>
             <div class="wo">
-            	<img src="images/tx.png" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/images/tx.png" />
-            	<p><a href="">White <i class="am-icon-angle-right"></i></a></p>
+            	<a href="myinfo.html"><img src="images/tx.png" id="myimg" style="border-radius: 70px;"/></a>
+            	<p><a href="myinfo.html" id="myname">昵称 <i class="am-icon-angle-right"></i></a></p>
             </div>
             <ul class="member">
             	<li>
@@ -85,6 +83,7 @@
             	</li>
  
             </ul>
+            <input type="button" value="安全退出" class="money-btn" >
             <div style="height: 49px;"></div>
 			<div data-am-widget="navbar" class="am-navbar  gm-foot am-no-layout" id="">
 				<ul class="am-navbar-nav am-cf am-avg-sm-4">
@@ -114,5 +113,35 @@
 					</li>
 				</ul>
 			</div>
+					
+
 	</body>
+	<script type="text/javascript" src="js/jquery.min.js" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/js/jquery.min.js" ></script>
+	<script type="text/javascript" src="js/amazeui.min.js" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/js/amazeui.min.js"></script>
+	<script type="text/javascript" src="js/hui.js"></script>
+	<script>
+		var id = localStorage.getItem("id");
+		if(!id){
+			location.href="login.html";
+		}else{
+			hui.getJSON(
+			    rootpath+'/businessMan/findBusinessMan/'+id,
+			    function(msg){
+			    	console.log(msg);
+			    	$("#myname").html(msg.hotelSinName);
+			    	if(msg.faceImg){
+			    		document.getElementById("myimg").src=rootpath+"/"+msg.faceImg;
+			    	}
+			    },
+			    function(e){
+			        hui.iconToast('读取消息失败', 'warn');
+			        console.log(e);
+			    }
+			);
+		}
+		$(".money-btn").click(function(){
+			localStorage.removeItem("id");
+			location.href="login.html";
+		});
+	</script>
 </html>

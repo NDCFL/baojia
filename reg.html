@@ -4,8 +4,6 @@
 		<meta charset="utf-8" />
 		<title></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-		<script type="text/javascript" src="js/jquery.min.js" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/js/jquery.min.js" ></script>
-		<script type="text/javascript" src="js/amazeui.min.js" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/js/amazeui.min.js"></script>
 		<link rel="stylesheet" href="css/amazeui.min.css" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/css/amazeui.min.css" type="text/css" />
 		<link rel="stylesheet" href="css/style.css" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/css/style.css" type="text/css" />
 	</head>
@@ -21,13 +19,39 @@
 		      </h1>
         </header>
         <div class="logo"><img src="images/logo.png" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/images/logo.png"/></div>
-        <input type="text" name="nickname" id="nickname" placeholder="请输入用户名" class="login-name">
-        <input type="text" name="mobile" id="mobile" placeholder="请输入手机号" class="login-password">
+        <input type="text" name="phone" id="phone" placeholder="请输入手机号" class="login-name">
+        <div>
+        	<input type="number" name="code" style="width: 60%;" id="code" placeholder="短信验证码" class="login-password">
+        	<button id="sendCode" style="width: 30%;height:42px ;background: #ff2c4c;color: #FFFFFF;border: none;border-radius: 5px;">获取验证码</button>
+        </div>
         <input type="password" name="password" id="password" placeholder="请输入密码" class="login-name">
         <input type="password" name="confirm_password" id="confirm_password" placeholder="再次输入密码" class="login-password">
-        <div class="agree"><input type="checkbox" name="checkbox" value="同意" checked="">&nbsp;同意
-		<a href="" class="reg1">《啊玉家帮用户协议》</a></div>
+        <div class="agree"></div>
 		<input type="button" value="注册" class="money-btn" >
 		<p class="login-text">已有账号,点此<a href="login.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/login.html" class="reg">登录</a></p>
 	</body>
+		<script type="text/javascript" src="js/jquery.min.js" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/js/jquery.min.js" ></script>
+		<script type="text/javascript" src="js/amazeui.min.js" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/js/amazeui.min.js"></script>
+	<script>
+		var wait=60;
+		function time(o) {  
+	        if (wait == 0) {  
+	            o.removeAttribute("disabled");            
+	            $("#sendCode").html("获取短信验证码");  
+	            wait = 60;  
+	        } else {  
+	            o.setAttribute("disabled", true);  
+	            $("#sendCode").html("重新发送(" + wait + "s)");  
+	            wait--;  
+	            setTimeout(function() {  
+	                time(o)  
+	            },  
+	            1000)  
+	        }  
+	    }  
+	    $("#sendCode").click(function(){
+	    	alert("asdfas");
+	    	time(this);
+	    });
+	</script>
 </html>
