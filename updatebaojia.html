@@ -6,24 +6,29 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<link rel="stylesheet" href="css/amazeui.min.css" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/css/amazeui.min.css" type="text/css" />
 		<link rel="stylesheet" href="css/style.css" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/css/style.css" type="text/css" />
+	<link rel="stylesheet" href="css/calendar.css" />
 	</head>
 	<body>
 		  <header data-am-widget="header" class="am-header am-header-default jz">
 		      <div class="am-header-left am-header-nav">
-		         <a href="javascript:history.back()" class="">
+		         <a href="javascript:history.back()" class="back">
 					<i class="am-icon-chevron-left"></i>
 				</a>
 		      </div>
 		      <h1 class="am-header-title">
-		          <a href="#title-link" class="">房型列表</a>
+		          <a href="#title-link" class="">修改报价</a>
 		      </h1>
            </header>
-           <input type="button"  value="报价明细" class="money-btn" >
             <ul class="order">
-            	<!--<li>
-            		<h2><i></i><span>家电清洗</span><b>去报价</b></h2>
-            	</li>-->
-            </ul>
+            	<input type="hidden" id="id"  />
+            	<li>
+            		<h2><i></i><span>价格</span><input placeholder="请输入报价(10-2000)" style="padding-left: 20px;font-size: 14px;" type="number" id="price" name="price"/></h2>
+            	</li>
+            	<li>
+            		<h2><i></i><span>库存</span><input placeholder="请输入房型库存" style="padding-left: 20px;font-size: 14px;" type="number" id="number" name="number"/></h2>
+            	</li>
+             </ul>
+			<input type="button" value="修改报价" class="money-btn" >
             <div style="height: 49px;"></div>
 			<div data-am-widget="navbar" class="am-navbar  gm-foot am-no-layout" id="">
 				<ul class="am-navbar-nav am-cf am-avg-sm-4">
@@ -57,33 +62,65 @@
 	<script type="text/javascript" src="js/jquery.min.js" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/js/jquery.min.js" ></script>
 	<script type="text/javascript" src="js/amazeui.min.js" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/js/amazeui.min.js"></script>
 	<script type="text/javascript" src="js/hui.js"></script>
+	<script type="text/javascript" src="js/date.js"></script>
 	<script>
+		var priceItemid = localStorage.getItem("priceItemid");
 		hui.getJSON(
-		    rootpath+'/hotelType/getHotelTypeList',
+		    rootpath+'/priceItem/findPriceItem/'+priceItemid,
 		    function(msg){
-		    	var htmls = '<li onclick="baojia(~);"><h2><i></i><span>~</span><b onclick="baojia(~);">去报价</b></h2></li>'
-				var $info = "";
-		    	if(parseInt(msg.length)==0){
-		    		$(".order").html('<li><h4 align="center" style="margin-top:20px;margin-bottom:20px">暂无报价数据</h4></li>');
-		    	}else{
-		    		for(var i=0;i<msg.length;i++){
-						$info = $info + htmls.replace("~",msg[i].id).replace("~",msg[i].text).replace("~",msg[i].id);
-					}
-					$(".order").html($info);
-		    	}
+		    	console.log(msg);
+		    	$("#id").val(msg.id);
+		    	$("#price").val(msg.price);
+		    	$("#number").val(msg.number);
 		    },
 		    function(e){
 		        hui.iconToast('读取消息失败', 'warn');
 		        console.log(e);
 		    }
 		);
-		function baojia(id){
-			localStorage.removeItem("hotelTypeId");
-			localStorage.setItem("hotelTypeId",id);
-			location.href="baojiainfo.html";
-		}
 		$(".money-btn").click(function(){
-			location.href="baojiaitem.html";
+			var id = $("#id").val();
+			var price = $("#price").val();
+			var $number =  $("#number").val();
+			if(!price){
+        		hui.toast('请填写报价', 1000);
+        		return;
+        	}
+        	if(price.indexOf(".")>-1){
+        		hui.toast('报价只能为整数', 1000);
+        		return;
+        	}
+        	if(parseInt(price)<10 || parseInt(price)>2000){
+        		hui.toast('报价范围为（10~2000）', 1000);
+        		return;
+        	}
+        	if(!$number){
+        		hui.toast('请填写库存', 1000);
+        		return;
+        	}
+        	if($number.indexOf(".")>-1){
+        		hui.toast('库存只能为整数', 1000);
+        		return;
+        	}
+			hui.postJSON(
+			    rootpath+'/priceItem/priceItemUpdateSave',
+			    {
+			    	id:priceItemid,
+			    	price:price,
+			    	number:$number
+			    },
+			    function(msg){
+			    	hui.confirm(msg.message+"是否回到列表？", ['取消','确定'], function(){
+				        location.href="baojiaitem.html";
+				    },function(){
+				    	
+				    });
+			    },
+			    function(e){
+			        hui.iconToast('读取消息失败', 'warn');
+			        console.log(e);
+			    }
+			);
 		});
 	</script>
 </html>

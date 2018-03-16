@@ -23,7 +23,7 @@
 				<p style="padding-top: 30px;color: #fff;margin-bottom: -20px;padding-left: 25px;" id="xq">星期三</p>
 				<p>
 					<span style="color: #fff;padding-left: 10px;" id="ny">2018年3月</span>
-					<span style="font-size: 30px;color: #fff;" id="ri">14号</span>
+					<span style="font-size: 28px;color: #fff;" id="ri">14号</span>
 				</p>
 			</div>
 			<div style="width: 45%;float: left;margin-left: 5%;height: 100px;">
@@ -73,8 +73,8 @@
 			<span class="am-icon-home am-icon-sm" style="color: #C10802;"></span>
 			<span style="font-family: '微软雅黑';font-weight: 800;">实时房型报价</span>
 		</div>
-		<ul class="brand" style="border: none;">
-			<li>
+		<ul class="brand" style="border: none;" id="hotelInfos">
+			<!--<li>
 				<a href="about.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/about.html">
 					<div class="brand-left">
 						<i class="am-icon-home am-icon-sm"></i>
@@ -86,66 +86,8 @@
 						</div>
 					</div>
 				</a>
-				<a href="about.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/about.html">
-					<div class="brand-left">
-						<i class="am-icon-home am-icon-sm"></i>
-						<div class="text">
-							<h2 style="color: #009CDA;">特价大床房</h2>
-							<p >库存&nbsp;&nbsp;25间</p>
-							<p style="color: #BE590A;">均价&nbsp;&nbsp;￥25</p>
-							<p style="color: #009CDA;">报价商家数&nbsp;&nbsp;25家</p>
-						</div>
-					</div>
-				</a>
 			</li>
-			<li>
-				<a href="about.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/about.html">
-					<div class="brand-left">
-						<i class="am-icon-home am-icon-sm"></i>
-						<div class="text">
-							<h2 style="color: #009CDA;">特价大床房</h2>
-							<p >库存:25间</p>
-							<p style="color: #BE590A;">均价&nbsp;&nbsp;￥25</p>
-							<p style="color: #009CDA;">报价商家数&nbsp;&nbsp;25家</p>
-						</div>
-					</div>
-				</a>
-				<a href="about.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/about.html">
-					<div class="brand-left">
-						<i class="am-icon-home am-icon-sm"></i>
-						<div class="text">
-							<h2 style="color: #009CDA;">特价大床房</h2>
-							<p >库存:25间</p>
-							<p style="color: #BE590A;">均价:￥25</p>
-							<p style="color: #009CDA;">报价商家数:25家</p>
-						</div>
-					</div>
-				</a>
-			</li>
-			<li>
-				<a href="about.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/about.html">
-					<div class="brand-left">
-						<i class="am-icon-home am-icon-sm"></i>
-						<div class="text">
-							<h2 style="color: #009CDA;">特价大床房</h2>
-							<p >库存:25间</p>
-							<p style="color: #BE590A;">均价:￥25</p>
-							<p style="color: #009CDA;">报价商家数:25家</p>
-						</div>
-					</div>
-				</a>
-				<a href="about.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/about.html">
-					<div class="brand-left">
-						<i class="am-icon-home am-icon-sm"></i>
-						<div class="text">
-							<h2 style="color: #009CDA;">特价大床房</h2>
-							<p >库存:25间</p>
-							<p style="color: #BE590A;">均价:￥25</p>
-							<p style="color: #009CDA;">报价商家数:25家</p>
-						</div>
-					</div>
-				</a>
-			</li>
+			-->
 		</ul>
 		<div class="doc-example">
 			<div style="margin-left: 15px;margin-top: 20px;">
@@ -268,6 +210,7 @@
 	timesInfo(year+"-"+(parseInt(month)<10?"0"+month:month)+"-"+(parseInt(date)<10?"0"+date:date));
     laydate.render({
 	    elem: '#test28'
+	    ,showBottom: false
 		,done: function(value, date){
 			document.getElementById("testView").value=value;
 			changeTimes(value);
@@ -321,7 +264,7 @@
 			html = html +'</div>';
 			html = html +'</li>';
 	    	if(msg.total==0){
-	    		$("#lists").html('<li><h4 align="center" style="margin-top:20px">暂无数据</h4></li>');
+	    		$("#lists").html('<li><h4 align="center" style="margin-top:20px;">暂无数据</h4></li>');
 	    	}else{
 	    		for(var i=0;i<msg.rows.length;i++){
 	    			all = all + html.replace("~",msg.rows[i].id).replace("~",rootpath+"/"+msg.rows[i].businessManVo.faceImg).replace("~",msg.rows[i].businessManVo.hotelSinName).replace("~",getDates(msg.rows[i].createTime)).replace("~",msg.rows[i].content);
@@ -342,9 +285,32 @@
 		    	times:val
 		    },
 		    function(msg){
-		    	$("#kc").html(msg.sumHotel);
-		    	$("#jj").html(msg.sumPrice);
-		    	$("#sj").html(msg.countBusincess);
+		    	var htmls = '<li>';
+				htmls = htmls + '<a href="hotelTypeInfo(~);">';
+				htmls = htmls + '<div class="brand-left">';
+				htmls = htmls + '<i class="am-icon-home am-icon-sm"></i>';
+				htmls = htmls + '<div class="text">';
+				htmls = htmls + '<h2 style="color: #009CDA;">~</h2>';
+				htmls = htmls + '<p >库存&nbsp;&nbsp;~间</p>';
+				htmls = htmls + '<p style="color: #BE590A;">均价&nbsp;&nbsp;￥~</p>';
+				htmls = htmls + '<p style="color: #009CDA;">报价商家数&nbsp;&nbsp;~家</p>';
+				htmls = htmls + '</div>';
+				htmls = htmls + '</div>';
+				htmls = htmls + '</a>';
+				htmls = htmls + '</li>';
+				var $info = "";
+		    	$("#kc").html(msg[0].sumHotel);
+		    	$("#jj").html(Math.round(msg[0].sumPrice));
+		    	$("#sj").html(msg[0].countBusincess);
+		    	if(parseInt(msg[1].length)==0){
+		    		$("#hotelInfos").html('<li><h4 align="center" style="margin-top:20px;margin-bottom:20px">暂无报价数据</h4></li>');
+		    	}else{
+		    		for(var i=0;i<msg[1].length;i++){
+						$info = $info + htmls.replace("~",msg[1][i].hotelTypeId).replace("~",msg[1][i].hotelName).replace("~",msg[1][i].sumHotels).replace("~",Math.round(msg[1][i].sumPrices)).replace("~",msg[1][i].countBusincesss);
+					}
+					$("#hotelInfos").html($info);
+		    	}
+				
 		    },
 		    function(e){
 		        hui.iconToast('读取消息失败', 'warn');

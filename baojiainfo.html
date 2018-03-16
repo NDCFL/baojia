@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<link rel="stylesheet" href="css/amazeui.min.css" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/css/amazeui.min.css" type="text/css" />
+		<link rel="stylesheet" href="css/style.css" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/css/style.css" type="text/css" />
+	<link rel="stylesheet" href="css/calendar.css" />
+	<style type="text/css">
+		/* .mask_calendar {
+			width: 100%;
+			height: 100%;
+			position: fixed;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background: rgba(0,0,0,.4);
+			display: none;
+		}
+		.calendar {
+			height: 400px;
+			position: fixed;
+			bottom: 0;
+			left: 0;
+		} */
+		.Date_lr{width:50%;text-align:center;}
+		.span21{
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			-webkit-transform: translate(-50%,-50%);
+			transform: translate(-50%,-50%);
+			font-size:14px;
+			color: #666;
+			border: 1px solid #e5e5e5;
+			padding:2px 8px;
+			line-height: 20px;
+			border-radius: .2rem;
+			background-color: #fff;
+		}
+		#checkinout{
+			height: 50px;
+			line-height: 50px;
+			position: relative;
+			margin: 10px;
+			padding: 2px 0;
+			display: -webkit-box;
+			display: flex;
+			border: 1px solid #e5e5e5;
+			border-radius: .02rem;
+			background-color: #fff;
+		}
+		#firstSelect p{line-height:25px;color: #999;font-size:12px;}
+		#startDate{border:0;position: absolute;left: 0;margin: 0 auto;width: 50%;font-size: 16px;color: #05c0ad;text-align: center;}
+		#endDate{border:0;position: absolute;right: 0;margin:auto 0;width:50%;font-size: 16px;color: #05c0ad;text-align: center;}
+		.mask_calendar {
+			width: 100%;
+			height: 100%;
+			position: fixed;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background: rgba(0,0,0,.4);
+			display: none;
+			z-index: 9999;
+		}
+		.calendar {
+			height: 400px;
+			position: fixed;
+			bottom: 0;
+			left: 0;
+		}
+		.animated {
+			animation-duration: 1s;
+			animation-fill-mode: both;
+		}
+		@keyframes slideInDown {
+			from {
+				transform: translate3d(0, -100%, 0);
+				visibility: visible;
+			}
+
+			to {
+				transform: translate3d(0, 0, 0);
+			}
+		}
+		.slideInDown {
+			animation-name: slideInDown;
+		}
+		/*提示*/
+		.mask_calendar {
+			width: 100%;
+			height: 100%;
+			position: fixed;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background: rgba(0,0,0,.4);
+			display: none;
+			z-index: 9999;
+		}
+		.calendar {
+			height: 400px;
+			position: fixed;
+			bottom: 0;
+			left: 0;
+		}
+		.calendar_tishi {
+			width: 150px;
+			height: 30px;
+			padding: 12px;
+			background: rgba(0,0,0,.6);
+			position: fixed;
+			top: 0;
+			bottom: 120px;
+			left: 0;
+			right: 0;
+			margin: auto;
+			color: #fff;
+			font-size: 16px;
+			text-align: center;
+			border-radius: 4px;
+			display:none;
+		}
+	</style>
+	</head>
+	<body>
+		  <header data-am-widget="header" class="am-header am-header-default jz">
+		      <div class="am-header-left am-header-nav">
+		         <a href="javascript:history.back()" class="">
+					<i class="am-icon-chevron-left"></i>
+				</a>
+		      </div>
+		      <h1 class="am-header-title">
+		          <a href="#title-link" class="">报价详情</a>
+		      </h1>
+           </header>
+           <ul class="order" id="order">
+            	<!--<li>
+            		<h2><i></i><span>家电清洗</span><b>去报价</b></h2>
+            	</li>-->
+            </ul>
+            <ul class="order">
+            	<li>
+            		<h2><i></i><span>价格</span><input placeholder="请输入报价(10-2000)" style="padding-left: 20px;font-size: 14px;" type="number" id="price" name="price"/></h2>
+            	</li>
+            	<li>
+            		<h2><i></i><span>库存</span><input placeholder="请输入房型库存" style="padding-left: 20px;font-size: 14px;" type="number" id="number" name="number"/></h2>
+            	</li>
+             </ul>
+            <div id="checkinout">
+				<div id="firstSelect" style="width:100%;">
+					<div class="Date_lr" style="float:left;">
+						<P>开始</p>
+							<input id="startDate" type="text" value=""style="" readonly>
+						</div>
+						<div class="Date_lr" style="float:right;">
+							<p>结束</p>
+							<input id="endDate" type="text" value="" style="" readonly>
+						</div>
+						<input type="hidden" name="sumDays" id="sumDays" value="1" />
+						<span class="span21">共<span class="NumDate">1</span>天</span>
+					</div>
+				</div>
+			<div class="mask_calendar">
+				<div class="calendar"></div>
+				<!-- 提示 -->
+				<div class="calendar_tishi">请选择离店日期...</div>
+			</div>
+			<input type="button" value="提交报价" class="money-btn" >
+            <div style="height: 49px;"></div>
+			<div data-am-widget="navbar" class="am-navbar  gm-foot am-no-layout" id="">
+				<ul class="am-navbar-nav am-cf am-avg-sm-4">
+					<li>
+						<a href="index.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/index.html" class="curr">
+							<span class="am-icon-home"></span>
+							<span class="am-navbar-label">首页</span>
+						</a>
+					</li>
+					<li  class="curr">
+						<a href="baojia.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/order.html" class="">
+							<span class="am-icon-paypal"></span>
+							<span class="am-navbar-label">报价</span>
+						</a>
+					</li>
+					<li>
+						<a href="yezhuquan.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/order.html" class="">
+							<span class="am-icon-spinner am-icon-spin"></span>
+							<span class="am-navbar-label">业主圈</span>
+						</a>
+					</li>
+					<li>
+						<a href="main.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/member.html" class="">
+							<span class="am-icon-user"></span>
+							<span class="am-navbar-label">我的</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+	</body>
+	<script type="text/javascript" src="js/jquery.min.js" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/js/jquery.min.js" ></script>
+	<script type="text/javascript" src="js/amazeui.min.js" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/js/amazeui.min.js"></script>
+	<script type="text/javascript" src="js/hui.js"></script>
+	<script type="text/javascript" src="js/date.js"></script>
+	<script>
+		var hotelTypeId = localStorage.getItem("hotelTypeId");
+		var id = localStorage.getItem("id");
+		hui.getJSON(
+		    rootpath+'/hotelType/findHotelType/'+hotelTypeId,
+		    function(msg){
+		    	var htmls = '<li><h2><i></i><span>~</span><b>正在报价</b></h2></li>'
+				var $info = "";
+				$info = $info + htmls.replace("~",msg.title);
+				$("#order").html($info);
+		    },
+		    function(e){
+		        hui.iconToast('读取消息失败', 'warn');
+		        console.log(e);
+		    }
+		);
+		$(function(){
+			$('#firstSelect').on('click',function (e) {
+				e.stopPropagation();
+                e.preventDefault();
+				$('.mask_calendar').show();
+			});
+			$('.mask_calendar').on('click',function (e) {
+				e.stopPropagation();
+                e.preventDefault();
+				if(e.target.className == "mask_calendar"){
+					$('.calendar').slideUp(200);
+	                $('.mask_calendar').fadeOut(200);
+				}
+			})
+			$('#firstSelect').calendarSwitch({
+				selectors : {
+					sections : ".calendar"
+				},
+                index : 4,      //展示的月份个数
+                animateFunction : "slideToggle",        //动画效果
+                controlDay:true,//知否控制在daysnumber天之内，这个数值的设置前提是总显示天数大于90天
+                daysnumber : "90",     //控制天数
+                comeColor : "#2EB6A8",       //入住颜色
+                outColor : "#2EB6A8",      //离店颜色
+                comeoutColor : "#E0F4F2",        //入住和离店之间的颜色
+                callback :function(){//回调函数
+                	$('.mask_calendar').fadeOut(200);
+                	var startDate = $('#startDate').val();  //入住的天数
+	                var endDate = $('#endDate').val();      //离店的天数
+	                var NumDate = $('.NumDate').text();    //共多少晚
+	                console.log(startDate);
+	                console.log(endDate);
+	                console.log(NumDate);
+	                $("#sumDays").val(NumDate);
+	                //下面做ajax请求
+                },   
+                comfireBtn:'.comfire'//确定按钮的class或者id
+            });
+			var b=new Date();
+            var ye=b.getFullYear();
+            var mo=b.getMonth()+1;
+            mo = mo<10?"0"+mo:mo;
+            var da=b.getDate();
+            da = da<10?"0"+da:da;
+            $('#startDate').val(ye+'-'+mo+'-'+da);
+            b=new Date(b.getTime()+24*3600*1000);
+            var ye=b.getFullYear();
+            var mo=b.getMonth()+1;
+            mo = mo<10?"0"+mo:mo;
+            var da=b.getDate();
+            da = da<10?"0"+da:da;
+            $('#endDate').val(ye+'-'+mo+'-'+da);
+        });
+        $(".money-btn").click(function(){
+        	var price = $("#price").val();
+        	var sumdays = $("#sumDays").val();
+        	var startDate = $("#startDate").val();
+        	var $number = $("#number").val();
+        	var $time = new Array();
+        	if(!price){
+        		hui.toast('请填写报价', 1000);
+        		return;
+        	}
+        	if(price.indexOf(".")>-1){
+        		hui.toast('报价只能为整数', 1000);
+        		return;
+        	}
+        	if(parseInt(price)<10 || parseInt(price)>2000){
+        		hui.toast('报价范围为（10~2000）', 1000);
+        		return;
+        	}
+        	if(!$number){
+        		hui.toast('请填写库存', 1000);
+        		return;
+        	}
+        	if($number.indexOf(".")>-1){
+        		hui.toast('库存只能为整数', 1000);
+        		return;
+        	}
+        	$(".money-btn").attr("disabled", true);  
+        	hui.toast('正在新增', 1000);
+        	for(var i=0;i<=parseInt(sumdays);i++){
+        		$time.push(addDate(startDate,i));
+        	}
+        	hui.postJSON(
+			    rootpath+'/priceItem/priceItemAddSaves',
+			    {
+			    	businessManId:id,
+			    	hotelTypeId:hotelTypeId,
+			    	price:price,
+			    	number:$number,
+			    	time:$time
+			    },
+			    function(msg){
+			    	console.log(msg);
+			    	if(msg.result=="success"){
+			    		$("#price").val("");
+			    		$("#number").val("");
+			    		$(".money-btn").removeAttr("disabled"); 
+			    		hui.toast(msg.message, 1000);
+			    	}else{
+			    		hui.toast(msg.message, 1000);
+			    	}
+			    },
+			    function(e){
+			        hui.iconToast('读取消息失败', 'warn');
+			        console.log(e);
+			    }
+			);
+        });
+        function addDate(value,index){
+        	var date = new Date(value);
+        	date.setDate(date.getDate()+index); 
+            var y = date.getFullYear();
+            var m = date.getMonth() + 1;
+            var d = date.getDate();
+            return y+"-"+(parseInt(m)<10?"0"+m:m)+"-"+(parseInt(d)<10?"0"+d:d);
+        }
+	</script>
+</html>
