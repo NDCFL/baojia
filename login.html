@@ -27,7 +27,7 @@
     	</p>
     	<div>
     		<p style="text-align: center;">其他登陆方式</p>
-    		<a href="##" style="margin-left: 43%;margin-top: 20px;" class="am-icon-btn am-success am-icon-weixin"></a>    		
+    		<a onclick="wxlogin();" style="margin-left: 43%;margin-top: 20px;" class="am-icon-btn am-success am-icon-weixin"></a>    		
     	</div>
 	</body>
 	<script type="text/javascript" src="js/jquery.min.js" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/js/jquery.min.js" ></script>
@@ -67,5 +67,34 @@
 			    }
 			);
 		});
+		function wxlogin(){
+			location.href="http://mykefang.com/login";
+		}
 	</script>
 </html>
+
+<!--BusinessManVo businessManVo = businessManService.findByOpenId(openid);
+                if(businessManVo!=null){
+                    return Message.success(JSONObject.toJSONString(businessManVo));
+                }else{
+                    String userInfo = msgInfo.getUserInfo(accessToken, openid);
+                    try {
+                        userInfo = new String(userInfo.getBytes("ISO8859-1"), "utf-8"); // 转码
+                        JSONObject userInfoJSON = JSON.parseObject(userInfo);
+                        BusinessManVo businessManVo1 = new BusinessManVo();
+                        businessManVo1.setName(userInfoJSON.getString("nickname"));
+                        businessManVo1.setFaceImg(userInfoJSON.getString("headimgurl"));
+                        businessManVo1.setWxopenid(openid);
+                        businessManVo1.setHotelSinName("未填写");
+                        businessManVo1.setHotelName("未填写");
+                        businessManVo1.setName(userInfoJSON.getString("nickname"));
+                        businessManVo1.setIsActive((byte) 0);
+                        businessManVo1.setCreateTime(new Date());
+                        businessManVo1.setType(0);
+                        businessManService.save(businessManVo1);
+                        return Message.success(businessManVo1.getId()+"");
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                        return Message.fail("资料转码错误!");
+                    }
+                }-->

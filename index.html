@@ -267,7 +267,12 @@
 	    		$("#lists").html('<li><h4 align="center" style="margin-top:20px;">暂无数据</h4></li>');
 	    	}else{
 	    		for(var i=0;i<msg.rows.length;i++){
-	    			all = all + html.replace("~",msg.rows[i].id).replace("~",rootpath+"/"+msg.rows[i].businessManVo.faceImg).replace("~",msg.rows[i].businessManVo.hotelSinName).replace("~",getDates(msg.rows[i].createTime)).replace("~",msg.rows[i].content);
+              	if(msg.rows[i].businessManVo.faceImg.indexOf("http")>-1){
+                		all = all + html.replace("~",msg.rows[i].id).replace("~",msg.rows[i].businessManVo.faceImg).replace("~",msg.rows[i].businessManVo.hotelSinName).replace("~",getDates(msg.rows[i].createTime)).replace("~",msg.rows[i].content);
+                }else{
+    					all = all + html.replace("~",msg.rows[i].id).replace("~",rootpath+"/"+msg.rows[i].businessManVo.faceImg).replace("~",msg.rows[i].businessManVo.hotelSinName).replace("~",getDates(msg.rows[i].createTime)).replace("~",msg.rows[i].content);
+                }
+
 	    		}
 	    		$("#lists").html(all);
 	    	}

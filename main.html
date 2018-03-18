@@ -113,11 +113,15 @@
 			hui.getJSON(
 			    rootpath+'/businessMan/findBusinessMan/'+id,
 			    function(msg){
-			    	console.log(msg);
-			    	$("#myname").html(msg.hotelSinName);
-			    	if(msg.faceImg){
-			    		document.getElementById("myimg").src=rootpath+"/"+msg.faceImg;
-			    	}
+				  $("#myname").html(msg.hotelSinName);
+				  if(msg.faceImg){
+				    	  if(msg.faceImg.indexOf("http")>-1){
+					    document.getElementById("myimg").src=msg.faceImg;
+					  }else{
+						document.getElementById("myimg").src=rootpath+"/"+msg.faceImg;
+					  }
+				     
+				  }
 			    },
 			    function(e){
 			        hui.iconToast('读取消息失败', 'warn');

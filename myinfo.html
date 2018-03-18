@@ -24,26 +24,35 @@
         	<p id="myname">酒店简称</p>
         </div>
         <div class="about">
-        	<div class="wxdy">
-        		<span>酒店简称</span>
-        		<em id="jc"></em>
-        	</div>
-        	<div class="wxdy">
-        		<span>酒店全称</span>
-        		<em id="qc"></em>
-        	</div>
-        	<div class="wxdy">
-        		<span>负责人</span>
-        		<em id="fzr"></em>
-        	</div>
-        	<div class="wxdy">
-        		<span>联系方式</span>
-        		<em id="lxfs"></em>
-        	</div>
-        	<div class="intro" id="bz">
-        		
-        	</div>
+	        	<form id="infos">
+	        		<div class="wxdy">
+		        		<span>酒店简称</span>
+		        		<input style="padding-left: 10px;font-size: 14px;" id="jc" name="hotelName"></em>
+		        	</div>
+		        	<div class="wxdy">
+		        		<span>酒店全称</span>
+		        		<input style="padding-left: 10px;font-size: 14px;"  id="qc" name="hotelSinName"></em>
+		        	</div>
+		        	<div class="wxdy">
+		        		<span>负责人</span>
+		        		<input style="padding-left: 10px;font-size: 14px;"  id="fzr" name="name"></em>
+		        	</div>
+		        	<div class="wxdy">
+		        		<span>酒店热线</span>
+		        		<input style="padding-left: 10px;font-size: 14px;"  id="rx" name="tel"></em>
+		        	</div>
+		        	<div class="wxdy">
+		        		<span>联系方式</span>
+		        		<input style="padding-left: 10px;font-size: 14px;"  id="lxfs" name="phone"></em>
+		        	</div>
+		        	<div class="intro" >
+		        		<textarea id="bz" style="width: 100%;height: 100px;border: none;" name="remark"></textarea>
+		        	</div>
+		        	<input type="hidden" name="id" id="id"/>
+	        	</form>
         </div>
+        		<input type="button" value="修改资料" class="money-btn" >
+			<div style="height: 55px;"></div>
 	    <input type="file" name="file" style="display: none" id="file" onchange="getImg();" accept="image/*;capture=camera"/>
 	</body>
 	<script type="text/javascript" src="js/jquery.min.js" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/js/jquery.min.js" ></script>
@@ -68,10 +77,10 @@
 		        type : 'post',  
 		        dataType : 'json', //返回值类型 一般设置为json  
 		        success : function(data, status){
-		        	if(status=="success"){
-		        		hui.toast('修改成功', 1000);
-		        	}
-		        	refush(id);
+			        	if(status=="success"){
+			        		hui.toast('修改成功', 1000);
+			        		refush(id);
+			        	}
 		        },  
 		        error : function(data, status, e){  
 		        	hui.toast('修改失败，服务器繁忙', 1000);
@@ -83,13 +92,15 @@
 			    rootpath+'/businessMan/findBusinessMan/'+id,
 			    function(msg){
 			    	console.log(msg);
+			    	$("#id").html(msg.id);
 			    	$("#myname").html(msg.hotelSinName);
 			    	$("#name").html(msg.name);
-			    	$("#jc").html(msg.hotelSinName);
-			    	$("#qc").html(msg.hotelName);
-			    	$("#fzr").html(msg.name);
-			    	$("#lxfs").html(msg.phone);
-			    	$("#bz").html(msg.remark);
+			    	$("#jc").val(msg.hotelSinName);
+			    	$("#qc").val(msg.hotelName);
+			    	$("#fzr").val(msg.name);
+			    	$("#lxfs").val(msg.phone);
+			    	$("#bz").val(msg.remark);
+			    	$("#rx").val(msg.tel);
 			    	if(msg.faceImg){
 			    		document.getElementById("myimg").src=rootpath+msg.faceImg;
 			    	}
@@ -100,5 +111,20 @@
 			    }
 			);
 		}
+		$(".money-btn").click(function(){
+			alert($("#infos").serialize());
+			hui.postJSON(
+				
+			    rootpath+'/businessMan/businessManUpdateSave',
+			    $("#infos").serialize(),
+			    function(msg){
+				    hui.toast(msg.message, 1000);
+			    },
+			    function(e){
+			        hui.iconToast('读取消息失败', 'warn');
+			        console.log(e);
+			    }
+			);
+		});		
 	</script>
 </html>
