@@ -26,23 +26,23 @@
 	</body>
 	<script type="text/javascript" src="js/jquery.min.js" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/js/jquery.min.js" ></script>
 	<script type="text/javascript" src="js/amazeui.min.js" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/js/amazeui.min.js"></script>
-	<script type="text/javascript" src="js/hui.js"></script>	<script>
+	<script type="text/javascript" src="js/hui.js"></script>
+	<script>
 	  	var urlVal=window.location.href;
 		var search = decodeURI(urlVal.substr(urlVal.indexOf("=")+1,urlVal.length));
-	    if(search){
-	    		$("#msg").html("微信授权登录失败!请联系管理员");
+	    if(!search){
+	    	$("#msg").html("微信授权登录失败!请联系管理员");
 	    }else{
-		    	hui.getJSON(
+		    hui.getJSON(
 			    rootpath+'/businessMan/findBusinessMan/'+search,
 			    function(msg){
-			    		if(msg.type==0){
-			    			$("#msg").html("你不是商会成员，无权访问，请联系管理理员授权");
-			    		}else{
-			    			localStorage.removeItem("id");
-						localStorage.setItem("id",msg.message);
+		    		if(msg.type==0){
+		    			$("#msg").html("你不是商会成员，无权访问，请联系管理理员授权");
+		    		}else{
+		    			localStorage.removeItem("id");
+						localStorage.setItem("id",msg.id);
 						location.href="index.html";
-			    		}
-			    			
+		    		}
 			    },
 			    function(e){
 			        hui.iconToast('读取消息失败', 'warn');

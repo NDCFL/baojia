@@ -209,6 +209,9 @@
 	<script>
 		var hotelTypeId = localStorage.getItem("hotelTypeId");
 		var id = localStorage.getItem("id");
+		if(!id){
+			location.href="login.html";
+		}
 		hui.getJSON(
 		    rootpath+'/hotelType/findHotelType/'+hotelTypeId,
 		    function(msg){

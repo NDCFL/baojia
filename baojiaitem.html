@@ -206,6 +206,9 @@
 	<script>
 		var hotelTypeId = localStorage.getItem("hotelTypeId");
 		var id = localStorage.getItem("id");
+		if(!id){
+			location.href="login.html";
+		}
 		$(function(){
 			$('#firstSelect').on('click',function (e) {
 				e.stopPropagation();

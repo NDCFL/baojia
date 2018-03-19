@@ -58,6 +58,10 @@
 	<script type="text/javascript" src="js/amazeui.min.js" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/js/amazeui.min.js"></script>
 	<script type="text/javascript" src="js/hui.js"></script>
 	<script>
+		var id = localStorage.getItem("id");
+		if(!id){
+			location.href="login.html";
+		}
 		hui.getJSON(
 		    rootpath+'/hotelType/getHotelTypeList',
 		    function(msg){

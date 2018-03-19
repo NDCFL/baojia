@@ -22,7 +22,7 @@
             	<a href="myinfo.html"><img src="images/tx.png" id="myimg" style="border-radius: 70px;"/></a>
             	<p><a href="myinfo.html" id="myname">昵称 <i class="am-icon-angle-right"></i></a></p>
             </div>
-            <ul class="member">
+            <!--<ul class="member">
             	<li>
             		<a href="money.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/money.html">
             			<h2>100</h2>
@@ -41,7 +41,7 @@
             			<p>优惠券</p>
             		</a>
             	</li>
-            </ul>
+            </ul>-->
             <ul class="nav">
             	<li>
             		<a href="baojia.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/money.html">
@@ -115,12 +115,11 @@
 			    function(msg){
 				  $("#myname").html(msg.hotelSinName);
 				  if(msg.faceImg){
-				    	  if(msg.faceImg.indexOf("http")>-1){
+				    if(msg.faceImg.indexOf("http")>-1){
 					    document.getElementById("myimg").src=msg.faceImg;
-					  }else{
+					}else{
 						document.getElementById("myimg").src=rootpath+"/"+msg.faceImg;
-					  }
-				     
+					}
 				  }
 			    },
 			    function(e){
