@@ -52,9 +52,9 @@
 			    	password:password
 			    },
 			    function(msg){
-			    	if(msg.result=="false"){
+			    	if(msg.result=="fail"){
 			    		hui.toast(msg.message, 1000);
-			    		return false;
+			    		return;
 			    	}else{
 						localStorage.removeItem("id");
 						localStorage.setItem("id",msg.message);
@@ -72,29 +72,3 @@
 		}
 	</script>
 </html>
-
-<!--BusinessManVo businessManVo = businessManService.findByOpenId(openid);
-                if(businessManVo!=null){
-                    return Message.success(JSONObject.toJSONString(businessManVo));
-                }else{
-                    String userInfo = msgInfo.getUserInfo(accessToken, openid);
-                    try {
-                        userInfo = new String(userInfo.getBytes("ISO8859-1"), "utf-8"); // 转码
-                        JSONObject userInfoJSON = JSON.parseObject(userInfo);
-                        BusinessManVo businessManVo1 = new BusinessManVo();
-                        businessManVo1.setName(userInfoJSON.getString("nickname"));
-                        businessManVo1.setFaceImg(userInfoJSON.getString("headimgurl"));
-                        businessManVo1.setWxopenid(openid);
-                        businessManVo1.setHotelSinName("未填写");
-                        businessManVo1.setHotelName("未填写");
-                        businessManVo1.setName(userInfoJSON.getString("nickname"));
-                        businessManVo1.setIsActive((byte) 0);
-                        businessManVo1.setCreateTime(new Date());
-                        businessManVo1.setType(0);
-                        businessManService.save(businessManVo1);
-                        return Message.success(businessManVo1.getId()+"");
-                    } catch (UnsupportedEncodingException e) {
-                        e.printStackTrace();
-                        return Message.fail("资料转码错误!");
-                    }
-                }-->

@@ -30,7 +30,7 @@
 				<div>
 					<input id="testView" type="hidden" onchange="changeTimes(this.value);" />
 					<i class="am-icon-calendar am-icon-lg" id="test28"  style="position:absolute;color: #fff;padding-left: 40%;padding-top: 40px;right: 25%;font-size: 10px;"></i>
-					<i class="am-icon-refresh am-icon-spin"  style="position:absolute;color: #fff;font-size: 26px;right: 10%;top: 30%;"></i>
+					<i class="am-icon-refresh am-icon-spin" id="ref" style="position:absolute;color: #fff;font-size: 26px;right: 10%;top: 30%;"></i>
 				</div>
 			</div>
 	        <!--<ul class="am-slides">  
@@ -323,5 +323,8 @@
 		    }
 		);
 	}
+	$("#ref").click(function(){
+		location.reload();
+	});
 </script>
 </html>
