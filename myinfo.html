@@ -15,10 +15,10 @@
 				</a>
 		      </div>
 		      <h1 class="am-header-title">
-		          <a href="#title-link" class="">关于我们</a>
+		          <a href="#title-link" class="">我的资料</a>
 		      </h1>
         </header>
-        <div class="logo"><img id="myimg" src="images/tx.png" style="width:150px;height:150px;border-radius: 100%;"/></div>
+        <div class="logo"><img id="myimg" src="images/tx.png" style="width:100px;height:100px;border-radius: 100%;"/></div>
         <div class="logotext">
         	<h2 id="name">名称</h2>
         	<p id="myname">酒店简称</p>
@@ -50,7 +50,7 @@
 		        	</div>
 		        	<input type="hidden" name="id" id="id"/>
 	        	</form>
-        </div>
+        		</div>
         		<input type="button" value="修改资料" class="money-btn" >
 			<div style="height: 55px;"></div>
 	    <input type="file" name="file" style="display: none" id="file" onchange="getImg();" accept="image/*;capture=camera"/>
@@ -102,8 +102,12 @@
 			    	$("#bz").val(msg.remark);
 			    	$("#rx").val(msg.tel);
 			    	if(msg.faceImg){
-			    		document.getElementById("myimg").src=rootpath+msg.faceImg;
-			    	}
+                      if(msg.faceImg.indexOf("http")>-1){
+                          document.getElementById("myimg").src=msg.faceImg;
+                      }else{
+                          document.getElementById("myimg").src=rootpath+"/"+msg.faceImg;
+                      }
+                    }
 			    },
 			    function(e){
 			        hui.iconToast('读取消息失败', 'warn');
@@ -112,9 +116,7 @@
 			);
 		}
 		$(".money-btn").click(function(){
-			alert($("#infos").serialize());
 			hui.postJSON(
-				
 			    rootpath+'/businessMan/businessManUpdateSave',
 			    $("#infos").serialize(),
 			    function(msg){

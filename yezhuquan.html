@@ -90,6 +90,10 @@
 		}
 		$("#saves").click(function(){
 			var contents = $(".ts").val();
+          	if(!contents){
+               hui.toast('内容不能为空!', 1000);
+              return;
+            }
 			hui.postJSON(
 			    rootpath+'/char/charAddSave/',
 			    {
