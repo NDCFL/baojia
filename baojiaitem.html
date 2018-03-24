@@ -163,7 +163,7 @@
 				<!-- 提示 -->
 				<div class="calendar_tishi">请选择离店日期...</div>
 			</div>
-			<input type="button" value="查询报价详情" class="money-btn" >
+			
 			<ul class="order" id="order">
             	<!--<li>
             		<h2><i></i><span>家电清洗</span><b>去报价</b></h2>
@@ -179,14 +179,14 @@
 						</a>
 					</li>
 					<li  class="curr">
-						<a href="baojia.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/order.html" class="">
+						<a href="price.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/order.html" class="">
 							<span class="am-icon-paypal"></span>
 							<span class="am-navbar-label">报价</span>
 						</a>
 					</li>
 					<li>
 						<a href="yezhuquan.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/order.html" class="">
-							<span class="am-icon-spinner am-icon-spin"></span>
+							<span class="am-icon-spinner"></span>
 							<span class="am-navbar-label">业主圈</span>
 						</a>
 					</li>
@@ -274,14 +274,14 @@
 			    function(msg){
 			    	console.log(msg);
 			    	var html = '<li id="list~">';
-					html = html + '<h2><i></i><span>~</span><b>已报价</b><em>报价完成</em></h2>';
-					html = html + '<p><img src="images/add.png" /><span>~</span></p>';
+					html = html + '<h2><i></i><span>~</span><b>已报价</b><em></em></h2>';
+					html = html + '<p><img src="images/kc.png" /><span>剩余库存 &nbsp;&nbsp; ~间</span></p>';
 					html = html + '<p style="border-bottom: 1px solid #ddd;">';
-					html = html + '<img src="images/time.png" />';
-					html = html + '<span style="border-bottom: 0;">~&nbsp;&nbsp; 剩余库存 &nbsp;&nbsp; ~间</span>';
+					html = html + '<img src="images/sj.png" />';
+					html = html + '<span style="border-bottom: 0;">~&nbsp;&nbsp; </span>';
 					html = html + '</p>';
 					html = html + '<h3>';
-					html = html + '<span>￥~</span>';
+					html = html + '<span ><b style="font-size:20px;color:#ff4100">￥~</b></span>';
 					html = html + '<a onclick="update(~);" class="current">修改报价</a>';
 					html = html + '<a onclick="deletes(~);">删除报价</a>';
 					html = html + '</h3>';
@@ -291,7 +291,7 @@
 			    		$("#order").html('<li><h4 align="center" style="margin-top:20px;margin-bottom: 20px">暂无报价数据</h4></li>');
 			    	}else{
 			    		for(var i=0;i<msg.length;i++){
-			    			all = all + html.replace("~",msg[i].id).replace("~",msg[i].hotelTypeVo.title).replace("~",msg[i].businessManVo.hotelSinName).replace("~",getCreateTime(msg[i].createTime)).replace("~",msg[i].number).replace("~",msg[i].price).replace("~",msg[i].id).replace("~",msg[i].id);
+			    			all = all + html.replace("~",msg[i].id).replace("~",msg[i].hotelTypeVo.title).replace("~",msg[i].number).replace("~",getCreateTime(msg[i].createTime)).replace("~",msg[i].price).replace("~",msg[i].id).replace("~",msg[i].id);
 			    		}
 			    		$("#order").html(all);
 			    	}

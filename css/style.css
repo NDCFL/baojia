@@ -174,3 +174,18 @@ a:hover{text-decoration: none;}
 .hui-loading{width:22px; height:22px; line-height:20px; font-size:18px; text-align:center; font-family:"hui-font" !important; animation:hui-a-rotate360 1s infinite linear; -webkit-animation:hui-a-rotate360 1s infinite linear; -moz-animation:hui-a-rotate360 1s infinite linear; -o-animation:hui-a-rotate360 1s infinite linear; float:left;}
 .hui-loading:before{content:"\e647";}
 .hui-loading-text{float:left; line-height:inherit; padding-left:3px;}
+/* 表单及表单元素 */
+.hui-form{background:#FFFFFF;}
+.hui-form-items{padding:15px 10px; border-bottom:1px solid #F3F4F5; position:relative; display:-webkit-flex; display:flex;}
+.hui-form-items-title{width:22%; line-height:22px; height:22px; flex-shrink:0;}
+.hui-form-items .hui-input{width:100% !important;}
+.hui-form-items .hui-form-radios{width:75% !important; padding:0px !important;}
+.hui-form-items .hui-form-textarea{width:75% !important;}
+.hui-form-items:last-child{border:none;}
+.hui-input{height:22px; line-height:22px; border:none; -webkit-appearance:none; -moz-appearance:none; appearance:none; border-radius:0; border:0; background:#FFF; width:100%; display:block; padding:0px;}
+#hui-input-clear{width:52px; height:52px; position:absolute; z-index:1; line-height:52px; text-align:center; right:0px; top:0px; color:#999999; background:#FFF;}
+#hui-input-clear:before{font-family:"hui-font" !important; content:"\e6a0"; font-size:18px;}
+.hui-pwd-eyes{width:52px; height:52px; background:#FFFFFF; position:absolute; z-index:1; text-align:center; line-height:52px; right:0px; top:0px; color:#999999;}
+.hui-pwd-eyes:before{font-family:"hui-font"; content:"\e63d"; font-size:12px;}
+.hui-pwd-eyes-sed{color:#3388FF !important;}
+.hui-form-radios {line-height:22px;}

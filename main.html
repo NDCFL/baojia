@@ -43,16 +43,31 @@
             	</li>
             </ul>-->
             <ul class="nav">
+              
+              	<li>
+            		<a onclick="types();" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/money.html">
+            			<img src="images/my.png" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/images/i1.png" />
+            			<span>我的主页</span>
+            			<i class="am-icon-angle-right"></i>
+            		</a>
+            	</li>
+              <li>
+            		<a href="myMsg.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/money.html">
+            			<img src="images/yzq.png" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/images/i1.png" />
+            			<span>我的业主圈</span>
+            			<i class="am-icon-angle-right"></i>
+            		</a>
+            	</li>
             	<li>
-            		<a href="baojia.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/money.html">
-            			<img src="images/i1.png" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/images/i1.png" />
+            		<a href="baojiaitem.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/money.html">
+            			<img src="images/bj.png" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/images/i1.png" />
             			<span>报价列表</span>
             			<i class="am-icon-angle-right"></i>
             		</a>
             	</li>
             	<li>
             		<a href="baojia.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/serveradd.html">
-            			<img src="images/i2.png" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/images/i2.png" />
+            			<img src="images/wybj.png" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/images/i2.png" />
             			<span>我要报价</span>
             			<i class="am-icon-angle-right"></i>
             		</a>
@@ -60,11 +75,11 @@
             </ul>
             <ul class="nav">
             	<li>
-            		<a href="tel:123456">
+            		<a href="tel:0532-85696999">
             			<img src="images/i5.png" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/images/i5.png" />
             			<span>呼叫客服</span>
             			<i class="am-icon-angle-right"></i>
-            			<em>18370940755</em>
+            			<em>0532-85696999</em>
             		</a>
             	</li>
  
@@ -87,7 +102,7 @@
 					</li>
 					<li>
 						<a href="yezhuquan.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/order.html" class="">
-							<span class="am-icon-spinner am-icon-spin"></span>
+							<span class="am-icon-spinner"></span>
 							<span class="am-navbar-label">业主圈</span>
 						</a>
 					</li>
@@ -132,5 +147,10 @@
 			localStorage.removeItem("id");
 			location.href="login.html";
 		});
+      function types(){
+        localStorage.removeItem("itemTypeId");
+        localStorage.setItem("itemTypeId",id);
+        location.href="priceInfo.html";
+      }
 	</script>
 </html>

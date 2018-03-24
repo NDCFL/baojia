@@ -15,7 +15,7 @@
                 me.index = me.settings.index;
                 me.comfire = me.settings.comfireBtn;
 
-                var html = "<div class='headerWrapper'><div class='headerTip'>请选择开始离店日期</div><div class='comfire'>完成</div></div><table class='dateZone'><tr><td class='colo'>日</td><td>一</td><td>二</td><td>三</td><td>四</td><td>五</td><td class='colo'>六</td></tr></table>" + "<div class='tbody'></div>"
+                var html = "<div class='headerWrapper'><div class='headerTip'>请选择入住离店日期</div><div class='comfire'>完成</div></div><table class='dateZone'><tr><td class='colo'>日</td><td>一</td><td>二</td><td>三</td><td>四</td><td>五</td><td class='colo'>六</td></tr></table>" + "<div class='tbody'></div>"
                 $(me.sections).append(html);
                 $(me.sections).find('.headerWrapper').css({
                     "height": "50px",
@@ -93,7 +93,7 @@
                 //点击完成部分
                 $(me.comfire).on('click', function(event) {
                     event.preventDefault();
-                    if($(me.sections).find('.tbody .rz').length < 2){
+                    if($(me.sections).find('.tbody .rz').length < 1){
                         $('.calendar_tishi').fadeIn(600);
                         setTimeout(function () {
                             $('.calendar_tishi').fadeOut(600);
@@ -102,10 +102,10 @@
                     }
                     $(me.sections).find('.tbody .rz').each(function(index, element) {
                         //判断是否有离店显示，没有就不给完成提交
-                        if ($(this).text() == '结束') {
+                        if ($(this).text() == '离店') {
                             //点击的日期存入input
                             $(me.sections).find('.tbody .rz').each(function(index, element) {
-                                if ($(this).text() == '开始') {
+                                if ($(this).text() == '入住') {
                                     var day = parseInt($(this).parent().text().replace(/[^0-9]/ig, "")) //截取字符串中的数字
                                     if(day < 10){
                                         day = "0" + day;
@@ -124,12 +124,12 @@
                                         startDayArrayMonth.push(startDayArrays[i])
                                     }
                                     startDayMonth = startDayArrayMonth.join('');
-                                    //添加开始到input
+                                    //添加入住到input
                                     $('#startDate').val(startDayYear + '-' + startDayMonth + '-' + day);
                                 }
-                                if ($(this).text() == '结束') {
+                                if ($(this).text() == '离店') {
                                     // var day = parseInt($(this).parent().text().replace(/[^0-9]/ig, "").substring(0, 2));
-                                    var day = $(this).parent().text().split('结')[0];
+                                    var day = $(this).parent().text().split('离')[0];
                                     if(day < 10){
                                         day = "0" + day;
                                     }
@@ -146,21 +146,13 @@
                                         endDayArrayMonth.push(endDayArrays[i])
                                     }
                                     endDayMonth = endDayArrayMonth.join('');
-                                    //添加开始到input
+									
+                                    //添加入住到input
                                     $('#endDate').val(endDayYear + '-' + endDayMonth + '-' + day);
                                    // console.log($("#startDate").val().replace(/[^0-9]/ig, ""))
                                    // console.log($("#endDate").val().replace(/[^0-9]/ig, ""))
-                                   // 如果开始等于离店
-                                    if (parseInt($("#startDate").val().replace(/[^0-9]/ig, "")) == parseInt($("#endDate").val().replace(/[^0-9]/ig, ""))) {
-                                        var x = $('#startDate').val();
-                                        var a = new Date(x.replace(/-/g, "/"));
-                                        var b = new Date();
-                                        b = new Date(a.getTime() + 24 * 3600 * 1000);
-                                        var ye = b.getFullYear();
-                                        var mo = b.getMonth() + 1;
-                                        var da = b.getDate();
-                                        $('#endDate').val(ye + '-' + mo + '-' + da);
-                                    }
+                                   // 如果入住等于离店
+                                    
                                 }
                                 startDayArrayYear = [];
                                 startDayArrayMonth = [];
@@ -168,7 +160,7 @@
                                 endDayArrayMonth = [];
 
                             });
-                            //添加天数
+                            //添加晚数
                             if($('.lidian_hover').text() != ""){
                                 var NumDate = $('.lidian_hover').text().replace(/[^0-9]/ig,"");
                                 $('.NumDate').text(NumDate);
@@ -176,7 +168,7 @@
 
                             var st = $('#startDate').val();
                             var en = $('#endDate').val();
-                            //如果开始没值
+                            //如果入住没值
                             if (st) {
                                 me._slider(me.sections)
                                 me._callback();
@@ -192,7 +184,7 @@
                                 var da = b.getDate();
                                 $('#endDate').val(ye + '-' + mo + '-' + da);
                                 $('.NumDate').text("1");
-                                // alert("请选择开始离店日期")
+                                // alert("请选择入住离店日期")
                                 me._slider(me.sections)
                                 me._callback()
                             }
@@ -227,13 +219,13 @@
                 tds.each(function(index, element) {
                     if ($(this).text() == strDays) {
                         var r = index;
-                        $(this).append('</br><p class="rz">开始</p>');
+                        $(this).append('</br><p class="rz">入住</p>');
                         if ($(this).next().text() != "") {
-                            $(this).next().append('</br><p class="rz">结束</p>');
+                            $(this).next().append('</br><p class="rz">离店</p>');
                         } else {
                             $(".dateTable").eq(1).find("td").each(function(index, el) {
                                 if ($(this).text() != "") {
-                                    $(this).append('</br><p class="rz">结束</p>');
+                                    $(this).append('</br><p class="rz">离店</p>');
                                     return false;
                                 }
                             });
@@ -274,7 +266,7 @@
                 var rz = $(me.sections).find('.rz');
                 // console.log(rz);
                 for (var i = 0; i < rz.length; i++) {
-                    if (rz.eq(i).text() == "开始") {
+                    if (rz.eq(i).text() == "入住") {
                         rz.eq(i).closest('td').css({
                             'background': comeColor,
                             'color': '#fff'
@@ -319,14 +311,14 @@
                                 'background': '#fff',
                                 'color': '#333333'
                             });
-                            $(this).append('<p class="rz">开始</p>');
+                            $(this).append('<p class="rz">入住</p>');
                             first = $(arry1).index($(this));
                             me._checkColor(me.comeColor, me.outColor)
                             flag = 1;
                             //显示提示：选择离店日期
                             $(me.sections).find('.rz').each(function(index, element) {
-                                if ($(this).text() == '开始') {
-                                    $(this).parent('td').append('<span class="hover ruzhu_hover">选择结束日期</span>');
+                                if ($(this).text() == '入住') {
+                                    $(this).parent('td').append('<span class="hover ruzhu_hover">选择离店日期</span>');
                                     $(this).parent('td').css('position', 'relative');
                                 }
                             });
@@ -346,7 +338,7 @@
                             })
                         } else if (flag == 1) { //第二次点击
                             $(me.sections).find('.rz').each(function(index, element) {
-                                if ($(this).text() == '开始') {
+                                if ($(this).text() == '入住') {
                                     $(this).parent('td').find('.ruzhu_hover').remove();
                                     $(this).parent('td').css('position', 'relative');
                                 }
@@ -354,7 +346,7 @@
                             flag = 0;
                             second = $(arry1).index($(this))
                             //如果第一次点击比第二次大，则不显示
-                            if(first >= second){
+                            if(first > second){
                                 $(me.sections).find('.hover').remove();
                                 $(me.sections).find('.tbody').find('p').remove('.rz');
                                 $(me.sections).find('.tbody').find('br').remove();
@@ -362,14 +354,14 @@
                                     'background': '#fff',
                                     'color': '#333333'
                                 });
-                                $(this).append('<p class="rz">开始</p>')
+                                $(this).append('<p class="rz">入住</p>')
                                 first = $(arry1).index($(this));
                                 me._checkColor(me.comeColor, me.outColor)
                                 flag = 1;
                                 //显示提示：选择离店日期
                                 $(me.sections).find('.rz').each(function(index, element) {
-                                    if ($(this).text() == '开始') {
-                                        $(this).parent('td').append('<span class="hover ruzhu_hover">选择结束日期</span>');
+                                    if ($(this).text() == '入住') {
+                                        $(this).parent('td').append('<span class="hover ruzhu_hover">选择离店日期</span>');
                                         $(this).parent('td').css('position', 'relative');
                                     }
                                 });
@@ -395,7 +387,7 @@
                             }
                             
                             if (first < second) {
-                                $(this).append('<p class="rz">结束</p>')
+                                $(this).append('<p class="rz">离店</p>')
                                 first = first + 1;
                                 for (first; first < second; first++) {
                                     $(arry1[first]).css({
@@ -404,9 +396,10 @@
                                     });
                                 }
                             } else if (first == second) {
-
-                                /*$(me.sections).find('.rz').text('开始');
-                                $(this).append('<p class="rz">离店</p>');
+								
+								
+								$('.rz').text('离店');
+                               
                                 $(this).find('.rz').css('font-size', '12px');
                                 var e = $(this).text().replace(/[^0-9]/ig, "");
                                 var c, d;
@@ -425,12 +418,12 @@
                                 d = b.join('');
 
                                 f = c + '-' + d + '-' + e;
-                                $("#startDate").val(f);*/
+                                $("#startDate").val(f);
 
                             } else if (first > second) {
 
-                                $(me.sections).find('.rz').text('结束');
-                                $(this).append('<p class="rz">开始</p>')
+                                $(me.sections).find('.rz').text('离店');
+                                $(this).append('<p class="rz">入住</p>')
                                 second = second + 1;
                                 for (second; second < first; second++) {
                                     $(arry1[second]).css({
@@ -440,8 +433,8 @@
                                 }
                             }
                             $(me.sections).find('.rz').each(function(index, element) {
-                                if ($(this).text() == '结束') {
-                                    $(this).parent('td').append('<span class="hover lidian_hover">共' + sum + '天</span>');
+                                if ($(this).text() == '离店') {
+                                    $(this).parent('td').append('<span class="hover lidian_hover">共' + sum + '晚</span>');
                                     $(this).parent('td').css('position', 'relative');
                                 }
                             });
@@ -508,11 +501,11 @@
         daysnumber: "30",
         //控制天数
         comeColor: "blue",
-        //开始颜色
+        //入住颜色
         outColor: "red",
         //离店颜色
         comeoutColor: "#0cf",
-        //开始和离店之间的颜色
+        //入住和离店之间的颜色
         callback: "",
         //回调函数
         comfireBtn: '.comfire' //确定按钮的class或者id

@@ -126,7 +126,21 @@
 			border-radius: 4px;
 			display:none;
 		}
+      /*修改提示文字的颜色*/
+        input::-webkit-input-placeholder { /* WebKit browsers */ 
+        	color: #bebebe; 
+        } 
+        input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
+        	color: #bebebe; 
+        } 
+        input::-moz-placeholder { /* Mozilla Firefox 19+ */ 
+        	color: #bebebe; 
+        } 
+        input:-ms-input-placeholder { /* Internet Explorer 10+ */ 
+        	color: #bebebe; 
+        } 
 	</style>
+      
 	</head>
 	<body>
 		  <header data-am-widget="header" class="am-header am-header-default jz">
@@ -146,7 +160,7 @@
             </ul>
             <ul class="order">
             	<li>
-            		<h2><i></i><span>价格</span><input placeholder="请输入报价(10-2000)" style="padding-left: 20px;font-size: 14px;" type="number" id="price" name="price"/></h2>
+            		<h2><i></i><span>价格</span><input placeholder="请输入报价(50-2000)" style="padding-left: 20px;font-size: 14px;color:#bebebe" type="number" id="price" name="price"/></h2>
             	</li>
             	<li>
             		<h2><i></i><span>库存</span><input placeholder="请输入房型库存" style="padding-left: 20px;font-size: 14px;" type="number" id="number" name="number"/></h2>
@@ -258,7 +272,11 @@
 	                console.log(startDate);
 	                console.log(endDate);
 	                console.log(NumDate);
-	                $("#sumDays").val(NumDate);
+                  	if(startDate==endDate){
+                        $("#sumDays").val(0);
+                    }else{
+                    	$("#sumDays").val(NumDate);
+                    }
 	                //下面做ajax请求
                 },   
                 comfireBtn:'.comfire'//确定按钮的class或者id
@@ -282,6 +300,7 @@
         	var price = $("#price").val();
         	var sumdays = $("#sumDays").val();
         	var startDate = $("#startDate").val();
+            var endDate = $("#endDate").val();
         	var $number = $("#number").val();
         	var $time = new Array();
         	if(!price){
@@ -292,8 +311,8 @@
         		hui.toast('报价只能为整数', 1000);
         		return;
         	}
-        	if(parseInt(price)<10 || parseInt(price)>2000){
-        		hui.toast('报价范围为（10~2000）', 1000);
+        	if(parseInt(price)<50 || parseInt(price)>2000){
+        		hui.toast('报价范围为（50~2000）', 1000);
         		return;
         	}
         	if(!$number){
@@ -306,9 +325,9 @@
         	}
         	$(".money-btn").attr("disabled", true);  
         	hui.toast('正在新增', 1000);
-        	for(var i=0;i<=parseInt(sumdays);i++){
-        		$time.push(addDate(startDate,i));
-        	}
+          	for(var i=0;i<=parseInt(sumdays);i++){
+            	$time.push(addDate(startDate,i));
+          	}	
         	hui.postJSON(
 			    rootpath+'/priceItem/priceItemAddSaves',
 			    {
@@ -324,7 +343,11 @@
 			    		$("#price").val("");
 			    		$("#number").val("");
 			    		$(".money-btn").removeAttr("disabled"); 
-			    		hui.toast(msg.message, 1000);
+                        hui.confirm(msg.message+"是否回到列表？", ['取消','确定'], function(){
+                            location.href="baojia.html";
+                        },function(){
+
+                        });
 			    	}else{
 			    		hui.toast(msg.message, 1000);
 			    	}
