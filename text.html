@@ -36,7 +36,7 @@
 			    rootpath+'/businessMan/findBusinessMan/'+search,
 			    function(msg){
 		    		if(msg.type==0){
-		    			$("#msg").html('对不起！您不是商会成员，无权限访问，请联系管理员授权，联系电话<a href="tel:0532-85696999">0532-85696999</b>');
+		    			$("#msg").html('对不起！您不是商会成员，无权限访问，请联系管理员授权，联系电话<a href="tel:0532-85696999" style="color:#009cff">0532-85696999</b>');
 		    		}else{
 		    			localStorage.removeItem("id");
 						localStorage.setItem("id",msg.id);

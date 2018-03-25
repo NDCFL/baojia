@@ -1,0 +1,57 @@
+.pinglun-wrap{
+	padding:10px 0px;
+	border-bottom: 1px solid #ccc;
+}
+.pinglun-wrap h4{
+	text-align: center;
+}
+.pinglun-wrap p{
+	padding:10px 0px;
+}
+.pinglun-wrap textarea{
+	display: block;
+    width: 92%;
+    padding: 6px 2%;
+    margin: 0 auto;
+    height: 80px;
+    border: 1px solid #DCDCDC;
+    border-radius: 5px;
+}
+.pinglun-wrap a{
+	width: 50% !important;
+}
+.pb-0{
+	padding-bottom: 0px !important;
+}
+.pinglun-list{
+	padding:10px 0px;
+	border-bottom: 1px solid #ccc;
+}
+.pinglun-list .pl-text{
+
+}
+.pinglun-list .pl-text span{
+	font-size: 16px;
+}
+.pinglun-list .pl-footer{
+	overflow: hidden;
+	margin-top: 5px;
+	font-size: 12px;
+	color: #999;
+}
+.pl-footer .pl-time{
+	float: left;
+}
+.pl-time i{
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	background: url(../img/time.png) no-repeat;
+	background-position: 0px 0px;
+	background-size: 100%;
+	vertical-align: middle;
+    margin-right: 5px;
+}
+.pl-footer .pl-ly{
+	float: right;
+}

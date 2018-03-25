@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<link rel="stylesheet" href="css/amazeui.min.css" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/css/amazeui.min.css" type="text/css" />
+		<link rel="stylesheet" href="css/style.css" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/css/style.css" type="text/css" />
+		<link rel="stylesheet" href="layui/css/layui.css"  media="all">
+	</head>
+	<body style="background-color: white;">
+    <header data-am-widget="header" class="am-header am-header-default jz">
+      <div class="am-header-left am-header-nav">
+         <a href="javascript:history.back()" class="">
+			<i class="am-icon-chevron-left"></i>
+		</a>
+      </div>
+      <h1 class="am-header-title">
+          <a href="#title-link" class="">业主圈</a>
+      </h1>
+      <div class="am-header-right am-header-nav">
+         <a  id="saves">
+			发表
+		</a>
+      </div>
+    </header>
+    <div style="margin-left: 15px;margin-top: 20px;" class="doc-example">
+		<span class="am-icon-spinner am-icon-sm" style="color: #C10802;"></span>
+		<span style="font-family: '微软雅黑';font-weight: 800;">业主发言区</span>
+	</div>
+	<div class="reg2">
+	    <div class="layui-upload">
+			<textarea name="content" rows="4" cols="3" id="content" style="width: 100%;border: none;" placeholder="说点什么吧"></textarea>
+			<hr/>
+		    <div class="layui-upload-list" id="demo2">
+		    	<img src="images/iconfont-tianjia.png" id="test2" style="width: 90px;height: 90px;border: none;">
+		    </div>
+		</div>   
+	</div>
+	
+    <div style="height: 52px;"></div>
+	<div data-am-widget="navbar" class="am-navbar  gm-foot am-no-layout" id="">
+		<ul class="am-navbar-nav am-cf am-avg-sm-4">
+			<li>
+				<a href="index.html" class="curr">
+					<span class="am-icon-home"></span>
+					<span class="am-navbar-label">首页</span>
+				</a>
+			</li>
+			<li>
+				<a href="price.html" class="">
+					<span class="am-icon-paypal"></span>
+					<span class="am-navbar-label">报价</span>
+				</a>
+			</li>
+			<li class="curr">
+				<a href="yezhuquan.html" class="">
+					<span class="am-icon-spinner"></span>
+					<span class="am-navbar-label">业主圈</span>
+				</a>
+			</li>
+			<li>
+				<a href="main.html" class="">
+					<span class="am-icon-user"></span>
+					<span class="am-navbar-label">我的</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+	<input type="hidden" id="indexs" value="0"/>
+	</body>
+	<script type="text/javascript" src="js/jquery.min.js" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/js/jquery.min.js" ></script>
+	<script type="text/javascript" src="js/amazeui.min.js" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/js/amazeui.min.js"></script>
+	<script type="text/javascript" src="js/hui.js"></script>
+	<script src="layui/layui.js" charset="utf-8"></script>
+	<script>
+		layui.use('upload', function(){
+		  var $ = layui.jquery
+		  ,upload = layui.upload;
+		  //多图片上传
+		  upload.render({
+		    elem: '#test2'
+		    ,url: 'http://192.168.199.201:8089/file/up'
+		    ,multiple: true
+		    ,before: function(obj){
+		      //预读本地文件示例，不支持ie8
+		      obj.preview(function(index, file, result){
+		      	$("#indexs").val(parseInt($("#indexs").val())+1);
+		      	if(parseInt($("#indexs").val())<=9){
+		        	$('<img src="'+ result +'" id="msg'+index+'" onclick="remove(this.id);" alt="'+ file.name +'" style="width:90px;height:90px;margin-left: 5px;,margin-top: 5px;margin-bottom: 5px;" class="layui-upload-img">').prependTo($('#demo2'))
+		      	}else{
+		      		hui.toast('最多上传9张!', 1000);
+		      	}
+		      });
+		    }
+		    ,done: function(res, index, upload){
+				if(parseInt($("#indexs").val())<=9){
+		    		$('<input name="imgs" type="hidden" id="msgs'+index+'" value="'+res.data.src+'"/>').prependTo($('#demo2'))
+		      	}else{
+		      		hui.toast('最多上传9张!', 1000);
+		      	}
+		      }
+		  });
+		});
+		var id = localStorage.getItem("id");
+		if(!id){
+			location.href="login.html";
+		}
+		$("#saves").click(function(){
+			var contents = $("#content").val();
+          	if(!contents){
+               hui.toast('内容不能为空!', 1000);
+              return;
+            }
+			var vals = "";
+			$("input[name='imgs']").each(function(){
+				vals += $(this).val()+",";
+			});
+			hui.postJSON(
+			    rootpath+'/char/charAddSave/',
+			    {
+			    	content:contents,
+			    	businessManId: id,
+			    	imgUrl:vals.substring(0,vals.length-1)
+			    },
+			    function(msg){
+			    	if(msg.result=="false"){
+			    		hui.toast("发布失败!", 1000);
+			    	}else{
+			    		hui.toast("发布成功!", 1000);
+			    	}
+			    	$(".ts").val("");
+			    	location.href="yezhuquan.html";
+			    },
+			    function(e){
+			        hui.iconToast('读取消息失败', 'warn');
+			        console.log(e);
+			    }
+			);
+		});
+		function remove(val){
+			var inputVal = "msgs"+val.substring(val.indexOf("g")+1,val.length);
+			hui.confirm('确认删除该图片吗？', ['取消','确定'], function(){
+		        $("#"+val).remove();
+		        $("#"+inputVal).remove();
+		        $("#indexs").val(parseInt($("#indexs").val())-1);
+		        hui.postJSON(
+				    rootpath+'/char/deleteFile',
+				    {
+				    	url:$("#"+inputVal).val()
+				    },
+				    function(msg){
+				    },
+				    function(e){
+				        hui.iconToast('读取消息失败', 'warn');
+				        console.log(e);
+				    }
+				);
+		    },function(){
+		        console.log('取消后执行...');
+		    });
+		}
+	</script>
+</html>

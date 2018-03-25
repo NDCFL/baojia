@@ -187,8 +187,13 @@
 
 				},
 				function(msg) {
-					hui.toast(msg.message, 1000);
-					refush(id);
+					hui.confirm('修改成功,是否回到我的主页？', ['取消','确定'], function(){
+				        location.href="main.html";
+				    },function(){
+				    	hui.toast(msg.message, 1000);
+				        refush(id);
+				    });
+					
 				},
 				function(e) {
 					hui.iconToast('读取消息失败', 'warn');

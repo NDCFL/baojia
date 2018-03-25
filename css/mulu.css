@@ -1,0 +1,142 @@
+.mulu-top{
+	overflow: hidden;
+	padding:10px 0px;
+}
+.mulu-top h2{
+	float: left;
+	width: 50%;
+	font-weight: normal;
+	font-size: 18px;
+}
+.mulu-top h5{
+	float: left;
+	width: 50%;
+	font-weight: normal;
+	font-size: 14px;
+	color: #019E97;
+}
+.mulu-top ul{
+	float: right;
+	width: 120px;
+	overflow: hidden;
+}
+.mulu-top ul li{
+	float: left;
+	text-align: center;
+	display: inline-block;
+	width: 60px;
+	height: 30px;
+	line-height: 30px;
+	background-color: #F3F3F3;
+	box-sizing: border-box;
+	border:1px solid #CDCDCD;
+	cursor: pointer;
+}
+.mulu-top ul li:first-child{
+	border-radius: 10px 0px 0px 10px;
+	border-right: none;
+}
+.mulu-top ul li:last-child{
+	border-radius: 0px 10px 10px 0px;
+	border-left: none;
+}
+.mulu-xu{
+	background-color: #fff !important;
+	border: 1px solid #4696e6 !important;
+	color: #4696e6 !important;
+}
+.mulu-xu01{
+	background-color: #fff !important;
+	border: 1px solid #4696e6 !important;
+	color: #4696e6 !important;
+}
+.mulu-list{
+	margin-top: 10px;
+}
+.mulu-list ul li{
+	padding:10px 0px;
+	border-bottom: 1px solid #eeeeee;
+	overflow: hidden;
+}
+.mulu-list ul li span{
+	display: inline-block;
+	width: 84%;
+	float: left;
+	height: 20px;
+	overflow: hidden;
+}
+.mulu-list ul li i{
+	float: right;
+	display: inline-block;
+	width: 40px;
+    height: 20px;
+    line-height: 20px;
+	color: #fff;
+	border-radius: 3px;
+	background-color: #4696e6;
+	text-align: center;
+	font-size: 12px;
+}
+.mulu-vip{
+	background-color: #E0544B !important;
+}
+.page{
+	padding:10px 0px 20px 0px;
+	overflow: hidden;
+}
+.page a{
+	display: inline-block;
+	width: 20%;
+	height: 35px;
+	line-height: 35px;
+	text-align: center;
+	box-sizing: border-box;
+	border:1px solid #9F9F9F;
+	background-color: #DDDDDD;
+	border-radius: 5px;
+	float: left;
+}
+.page select{
+	width: 54%;
+	margin-left: 2%;
+	margin-right: 2%;
+	float: left;
+	padding-left: 2%;
+	height: 36px;
+	border-radius: 6px;
+	box-sizing: border-box;
+	border:1px solid #9F9F9F;
+	outline: none;
+	appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background:#DDDDDD url(../images/xiala.png) no-repeat 96% center;
+    color: #3E3A39;
+}
+.page .down{
+	border:1px solid #009F95 !important;
+	color: #009F95 !important;
+	background-color: #fff !important;
+}
+.new_mulu{
+	padding:10px 0px;
+}
+.new_mulu p{
+	padding-bottom: 5px;
+}
+.new_mulu p span{
+	font-size: 16px;
+}
+.new_mulu p b{
+	color: #717171;
+}
+.new_mulu .txt{
+	color: #717171;
+	text-indent: 2em;
+}
+.no-border li{
+	border:none !important;
+}
+.pb-0{
+	padding-bottom: 0px !important;
+}

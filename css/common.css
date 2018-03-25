@@ -1,0 +1,251 @@
+@charset "utf-8";
+body, p, input, h1, h2, h3, h4, ul, li, dl, dt, dd, form {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    vertical-align: middle;
+    font-weight: normal;
+}
+b{
+    font-weight: normal;
+}
+body {
+    font-family: '微软雅黑', 'Arial';
+    font-size: 14px;
+    -webkit-text-size-adjust: none;
+    -moz-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+    -o-text-size-adjust: none;
+}
+
+html, body {
+    width: 100%;
+    margin: 0 auto;
+    min-width: 320px;
+    max-width: 640px;
+    color: #666;
+    background: #FFFFFF;
+}
+
+a {
+    text-decoration: none;
+    color: #666;
+}
+*{
+    padding:0;
+    margin:0;
+}
+i{
+    font-style: normal;
+}
+.mt-0{
+    margin-top: 0px !important;
+}
+.mt-10 {
+    margin-top: 10px !important;
+}
+
+.mt-20 {
+    margin-top: 20px !important;
+}
+
+.none {
+    display: none;
+}
+.clear {
+    clear: both;
+}
+.no-border {
+    border: none !important;
+}
+.line-b{
+   border-bottom: 1px solid #ECECEC !important;
+}
+.banner-pic{
+    display: block;
+    width: 100%;
+}
+.banner-color{
+    height: 37px;
+    border-bottom: 1px solid #fff;
+}
+.container{
+    width: 96%;
+    margin:0 auto;
+}
+.fixed-top{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    max-width: 640px;
+    margin: 0 auto;
+    overflow: hidden;
+    z-index: 999;
+    min-width: 320px;
+    height: 50px;
+    line-height: 50px;
+}
+.back-top {
+    text-align: center;
+    width: 100%;    
+    position: relative;
+}
+
+.back-top span {
+    font-size: 16px;
+}
+.back-top a{
+    display: inline-block;
+    font-style: normal;
+}
+.back-top .back{
+    width: 20px;
+    height: 24px;
+    position: absolute;
+    left: 2%;
+    overflow: hidden;
+    background: url(../img/back.png) no-repeat 0px 0px;
+    background-size: 60%;
+    bottom: 10px;
+}
+.top-btn{
+    height: 22px;
+    width: 40px;
+    line-height: 22px;
+    color: #fff;
+    right: 2% !important;
+    position: absolute;
+    padding:0px 4px;
+    border-radius: 5px;
+    bottom: 10px;
+}
+.pub-btn{
+    padding-bottom: 60px;
+    text-align: center;
+}
+.pub-btn a{
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    width: 80%;
+    text-align: center;
+    color: #fff;
+    border-radius: 5px;
+    margin:0 auto;
+}
+.banner{
+    height: 40px;
+    line-height: 40px;
+    width: 100%;
+    text-align: center;
+    background: #4696e6;
+    overflow: hidden;
+}
+.banner ul li{
+    width: 20%;
+    float: left;
+    text-align: center;
+}
+.banner li a{
+    color: #fff;
+    font-size: 17px;
+    display: inline-block;
+    width: 70px;
+}
+.search{
+    width: 96%;
+    margin:0 auto;
+    padding:10px 0px;
+    overflow: hidden;
+    position: relative;
+}
+.search input{
+    width: 100%;
+    padding: 6px 2%;    
+    box-sizing:border-box;
+    border:1px solid #C6C6C6;
+    font-size: 14px;
+    border-radius: 5px;
+    outline: none;
+    color: #666;
+}
+.search i{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: url(../img/search.png) no-repeat 0 0;
+    background-size: 100%;
+    position: absolute;
+    top: 15px;
+    right: 2%;
+}
+.nav-bottom{
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    background: #F0F0F0;
+}
+.nav-bottom ul li{
+    float: left;
+    text-align: center;
+    width: 20%;
+}
+.nav-bottom li a{
+    color: #586367;
+    font-size: 16px;
+    display: inline-block;
+    width: 100%;
+}
+.kefu-mess{
+    padding-top: 10px;
+    background: #F0F0F0;
+}
+.night{
+    background: #282828 !important;
+}
+.bai{
+    background: #fff !important;
+}
+.banner01{
+    height: 40px;
+    line-height: 40px;
+    width: 100%;
+    text-align: center;
+    border-bottom: 2px solid #32be82;
+}
+.banner01 ul li{
+    width: 20%;
+    float: left;
+    text-align: center;
+}
+.banner01 li a{
+    font-size: 18px;
+    display: inline-block;
+    width: 100%;
+    color: #999;
+}
+.nav-b{
+    border-bottom: 1px solid #CBCBCB !important;
+}
+.no-title-style{
+    background: none !important;
+    padding-left: 0px !important;
+}
+
+/*夜间模式*/
+.yejian_body a{
+    color: #666;
+}
+.yejian_body .line-b{
+    border-color: #616161!important;
+}
+.yejian_body .nav-bottom{
+    background-color: #313131;
+    border-color: #616161;
+}
+.yejian_body .kefu-mess{
+    background-color: #313131;
+}
+/*夜间模式*/

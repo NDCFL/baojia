@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<link rel="stylesheet" href="css/amazeui.min.css" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/css/amazeui.min.css" type="text/css" />
+		<link rel="stylesheet" href="css/style.css" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/css/style.css" type="text/css" />
+      
+  </head>
+	<body>
+		 <header data-am-widget="header" class="am-header am-header-default jz">
+		      <div class="am-header-left am-header-nav">
+		         <a href="javascript:history.back()" class="">
+					<i class="am-icon-chevron-left"></i>
+				</a>
+		      </div>
+		      <h1 class="am-header-title">
+		          <a href="#title-link" class="">我的资料</a>
+		      </h1>
+        </header>
+        <div class="logo"><img id="myimg" src="images/tx.png" style="width:100px;height:100px;border-radius: 100%;"/></div>
+        <div class="logotext">
+        	<h2 id="name">名称</h2>
+        	<p id="myname" style="font-size:18px">酒店简称</p>
+        </div>
+        <div class="about">
+	        	<form id="infos">
+	        		<div class="wxdy">
+		        		<span>酒店简称</span>
+		        		<em id="jc" name="hotelName" style="margin-left:20px"></em>
+		        	</div>
+		        	<div class="wxdy">
+		        		<span>酒店全称</span>
+		        		<em  id="qc" name="hotelSinName" style="margin-left:20px"></em>
+		        	</div>
+		        	<div class="wxdy">
+		        		<span>负&nbsp;&nbsp;责&nbsp;&nbsp;人</span>
+		        		<em  id="fzr" name="name" style="margin-left:20px"></em>
+		        	</div>
+		        	<div class="wxdy">
+		        		<span>酒店热线</span>
+		        		<em onclick="callphone(this.innerText)" style="color: #009cff;margin-left:20px" id="rx" name="tel"></em>
+		        	</div>
+		        	<div class="wxdy">
+		        		<span>联系方式</span>
+		        		<em onclick="callphone(this.innerText)" style="color: #009cff;margin-left:20px" id="lxfs" name="phone"></em>
+		        	</div>
+		        	<div class="intro" >
+		        		<textarea id="bz" style="width: 100%;height: 100px;border: none;" readonly="readonly" name="remark"></textarea>
+		        	</div>
+	        	</form>
+        		</div>
+			<div style="height: 55px;"></div>
+	    <input type="file" name="file" style="display: none" id="file" onchange="getImg();" accept="image/*;capture=camera"/>
+	</body>
+	<script type="text/javascript" src="js/jquery.min.js" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/js/jquery.min.js" ></script>
+	<script type="text/javascript" src="js/ajaxfileupload.js"></script>
+	<script type="text/javascript" src="js/amazeui.min.js" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/js/amazeui.min.js"></script>
+	<script type="text/javascript" src="js/hui.js"></script>
+	<script>
+		var id = localStorage.getItem("id");
+		var busid = localStorage.getItem("busid");
+		if(!id){
+			location.href="login.html";
+		}else{
+			refush(busid);
+		}
+		function refush(id){
+			hui.getJSON(
+			    rootpath+'/businessMan/findBusinessMan/'+busid,
+			    function(msg){
+			    	console.log(msg);
+			    	$("#id").html(msg.id);
+			    	$("#myname").html(msg.hotelSinName);
+			    	$("#name").html(msg.name);
+			    	$("#jc").html(msg.hotelSinName);
+			    	$("#qc").html(msg.hotelName);
+			    	$("#fzr").html(msg.name);
+			    	$("#lxfs").html(msg.phone);
+			    	$("#bz").html(msg.remark);
+			    	$("#rx").html(msg.tel);
+			    	if(msg.faceImg){
+                      if(msg.faceImg.indexOf("http")>-1){
+                          document.getElementById("myimg").src=msg.faceImg;
+                      }else{
+                          document.getElementById("myimg").src=rootpath+"/"+msg.faceImg;
+                      }
+                    }
+			    },
+			    function(e){
+			        hui.iconToast('读取消息失败', 'warn');
+			        console.log(e);
+			    }
+			);
+		}
+		function callphone(val){  
+			if(val.indexOf("未填写")>-1){
+				hui.toast('号码格式错误', 1000);
+			}else{
+				window.location.href = "tel:"+val;
+			}
+	    }
+	</script>
+</html>

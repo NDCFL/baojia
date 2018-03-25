@@ -1,0 +1,13 @@
+.book_xiajia{
+	text-align: center;
+	background: #fff;
+}
+.book_xiajia img{
+	width: 30%;
+	padding:30px 0px 20px 0px;
+}
+.book_xiajia p{
+	padding:0px 20px 20px 20px;
+	color: #888;
+	line-height: 22px;
+}

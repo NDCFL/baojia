@@ -1,0 +1,27 @@
+.qiehuan-wrap{
+    margin-top: 10px;
+}
+.qiehuan-wrap ul li {
+    list-style: none;
+    float: left;
+    cursor: pointer;
+    width: 33.3%;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    box-sizing: border-box;
+    border:1px solid #4696e6;
+    color: #4696e6;
+}
+.qiehuan-wrap ul li.li-bg {
+    background-color: #4696e6 !important;
+    border:1px solid #4696e6 !important;
+    color: #fff !important;
+}
+.qiehuan-wrap ul li:first-child{
+    border-radius: 5px 0px 0px 5px;
+}
+.qiehuan-wrap ul li:last-child{
+    border-radius: 0px 5px 5px 0px;
+}
+

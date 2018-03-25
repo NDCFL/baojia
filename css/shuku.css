@@ -1,0 +1,43 @@
+.shuku-top{
+	clear: both;
+	overflow: hidden;
+	padding:10px 0px;
+}
+.shuku-top ol{
+	width: 66%;
+	margin-left: 17%;
+	overflow: hidden;
+}
+.shuku-top ol li{
+	width: 50%;
+	float: left;
+}
+.shuku-top ol li img{
+	width: 100%;
+}
+.shuku-main{
+	padding:5px 0px;
+}
+.shuku-main .title{
+	width: 30%;
+	margin-left: 2%;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	color: #fff;
+	margin-top: 10px;
+}
+.shuku-main ul{
+	overflow: hidden;
+}
+.shuku-main ul li{
+	width: 30.6%;
+	margin-left: 2%;
+	float: left;
+	height: 38px;
+	line-height: 38px;
+	text-align: center;
+	box-sizing: border-box;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+}

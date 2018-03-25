@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<link rel="stylesheet" href="css/amazeui.min.css" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/css/amazeui.min.css" type="text/css" />
+		<link rel="stylesheet" href="css/style.css" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/css/style.css" type="text/css" />
+	</head>
+
+	<body>
+		<!--<header data-am-widget="header" class="am-header am-header-default jz">
+			<div class="am-header-left am-header-nav">
+				<i class="am-icon-calendar"  style="color: gray;font-size: 26px;"></i>
+			</div>
+			<h1 class="am-header-title">
+		          <a href="#title-link" class="">瑞蓝报价</a>
+		      </h1>
+		</header>-->
+		<div style="background-image: url(img/bg.png);height: 100px;" class="am-slider am-slider-default"> 
+			<div style="width: 45%;float: left;margin-left: 3%;height: 100px;">
+				<p style="padding-top: 30px;color: #fff;margin-bottom: -20px;padding-left: 25px;" id="xq">星期三</p>
+				<p>
+					<span style="color: #fff;padding-left: 10px;" id="ny">2018年3月</span>
+					<span style="font-size: 28px;color: #fff;" id="ri">14号</span>
+				</p>
+			</div>
+			<div style="width: 45%;float: left;margin-left: 5%;height: 100px;">
+				<div>
+					<input id="testView" type="hidden" onchange="changeTimes(this.value);" />
+					<i class="am-icon-calendar am-icon-lg" id="test28"  style="position:absolute;color: #fff;padding-left: 40%;padding-top: 40px;right: 25%;font-size: 10px;"></i>
+					<i class="am-icon-repeat am-icon-spin" id="ref"  style="position:absolute;color: #fff;font-size: 26px;right: 10%;top: 30%;"></i>
+				</div>
+			</div>
+	        <!--<ul class="am-slides">  
+	            <li><img src="images/banner.png"></li>  
+	            <li><img src="images/banner1.png"></li>  
+	        </ul>  -->
+		</div>
+		<ul class="brand" style="border: none;" id="hotelInfos">
+			<!--<li>
+				<a>
+					<div style="height:45px;margin-left: 10px;">
+						<img src="images/2.png" onclick="businessMan(id);" style="width: 50px;height: 40px;" /><span style="padding-left: 10px;">瑞蓝公寓</span>
+					</div>
+					<hr style="    margin: 0px 0 -0.4rem"/>
+					<div style="height:80px;">
+						<div style="width: 33%;float: left;height:100%;text-align: center;"> 
+							<p style="padding-top: 8px;"><span style="font-size: 26px;color: #fc4100;">520</span>/间</p>
+							<p style="margin-top: -4px;">库房存量</p>
+						</div>
+						<div style="width: 33%;float: left;height:100%;text-align: center;">
+							<p style="padding-top: 8px;"><span style="font-size: 26px;color: #fc4100;">520</span>/元</p>
+							<p style="margin-top: -4px;">平均房价</p>
+						</div>
+						<div style="width: 33%;float: left;height:100%;text-align: center;">
+							<p style="padding-top: 8px;"><span style="font-size: 26px;color: #fc4100;">520</span>/种</p>
+							<p style="margin-top: -4px;">报价房型</p>
+						</div>
+					</div>
+				</a>
+			</li>-->
+		</ul>
+		<div style="height: 55px;"></div>
+		<div data-am-widget="navbar" class="am-navbar  gm-foot am-no-layout" id="">
+			<ul class="am-navbar-nav am-cf am-avg-sm-4">
+				<li>
+					<a href="index.html">
+						<span class="am-icon-home"></span>
+						<span class="am-navbar-label">首页</span>
+					</a>
+				</li>
+				<li class="curr">
+					<a href="price.html"   class="curr">
+						<span class="am-icon-paypal"></span>
+						<span class="am-navbar-label">报价</span>
+					</a>
+				</li>
+				<li>
+					<a href="yezhuquan.html" class="">
+						<span class="am-icon-spinner"></span>
+						<span class="am-navbar-label">业主圈</span>
+					</a>
+				</li>
+				<li>
+					<a href="main.html" class="">
+						<span class="am-icon-user"></span>
+						<span class="am-navbar-label">我的</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</body>
+<script type="text/javascript" src="js/jquery.min.js" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/js/jquery.min.js"></script>
+<script type="text/javascript" src="js/amazeui.min.js" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/js/amazeui.min.js"></script>
+<script type="text/javascript" src="js/hui.js"></script>
+<script type="text/javascript" src="js/laydate/laydate.js"></script>
+<!--<script>
+    $(function(){  
+        $('.am-slider').flexslider({  
+            playAfterPaused: 3000,  
+            animation: "fade",  
+            animationLoop: true,  
+            smoothHeight: true,  
+            animationSpeed: 4000  
+        });  
+    });   
+</script>  -->
+<script>
+	var id = localStorage.getItem("id");
+	if(!id){
+		location.href="login.html";
+	}
+	var show_day=new Array('星期日','星期一','星期二','星期三','星期四','星期五','星期六'); 
+	var time=new Date(); 
+	var year=time.getFullYear(); 
+	var month=time.getMonth()+1; 
+	var date=time.getDate(); 
+	var day=time.getDay(); 
+	var hour=time.getHours(); 
+	var minutes=time.getMinutes(); 
+	var second=time.getSeconds(); 
+	$("#xq").html(show_day[day]);
+	$("#ny").html(year+'年'+month+'月');
+	$("#ri").html(date+"号");
+	timesInfo(year+"-"+(parseInt(month)<10?"0"+month:month)+"-"+(parseInt(date)<10?"0"+date:date));
+    laydate.render({
+	    elem: '#test28'
+      	,showBottom: false
+		,done: function(value, date){
+			document.getElementById("testView").value=value;
+			changeTimes(value);
+	    }
+    });
+	function getTimes(){
+		$("#test28").click();
+	}
+	function times(){
+		alert("afsasfs");
+	}
+	function a(){
+	    $("#test28").html("");
+	}
+	setInterval(a,1);
+	function changeTimes(val){
+		var show_day=new Array('星期日','星期一','星期二','星期三','星期四','星期五','星期六'); 
+		var time=new Date(val); 
+		var year=time.getFullYear(); 
+		var month=time.getMonth()+1; 
+		var date=time.getDate(); 
+		var day=time.getDay(); 
+		var hour=time.getHours(); 
+		var minutes=time.getMinutes(); 
+		var second=time.getSeconds(); 
+		$("#xq").html(show_day[day]);
+		$("#ny").html(year+'年'+month+'月');
+		$("#ri").html(date+"号");
+		timesInfo(year+"-"+(parseInt(month)<10?"0"+month:month)+"-"+(parseInt(date)<10?"0"+date:date));
+	}
+	function timesInfo(val){
+		hui.postJSON(
+		    rootpath+'/priceItem/infos',
+		    {
+		    	times:val
+		    },
+		    function(msg){
+		    	console.log(msg);
+				var htmls = '<li>';
+				htmls = htmls + '<a>';
+				htmls = htmls + '<div style="height:45px;margin-left: 10px;" onclick="businessMan(~);" >';
+				htmls = htmls + '<img src="~" style="width: 40px;height: 35px;margin-top:-5px" /><span style="padding-left: 10px;line-height:50px">~</span>';
+				htmls = htmls + '</div>';
+				htmls = htmls + '<hr style="margin: 0px 0 -0.4rem"/>';
+				htmls = htmls + '<div style="height:70px;" onclick="types(~);">';
+				htmls = htmls + '<div style="width: 33%;float: left;height:100%;text-align: center;"> ';
+				htmls = htmls + '<p style="padding-top: 8px;font-size: 12px;"><span style="color: #fc4100;font-size: 26px;"><b>~</b></span>/间</p>';
+				htmls = htmls + '<p style="margin-top: -4px;color: #666;">库房存量</p>';
+				htmls = htmls + '</div>';
+				htmls = htmls + '<div style="width: 33%;float: left;height:100%;text-align: center;">';
+				htmls = htmls + '<p style="padding-top: 8px;font-size: 12px;"><span style="color: #fc4100;font-size: 26px;"><b>~</b></span>/元</p>';
+				htmls = htmls + '<p style="margin-top: -4px;color: #666;">平均房价</p>';
+				htmls = htmls + '</div>';
+				htmls = htmls + '<div style="width: 33%;float: left;height:100%;text-align: center;">';
+				htmls = htmls + '<p style="padding-top: 8px;font-size: 12px;"><span style="color: #fc4100;font-size: 26px;"><b>~</b></span>/种</p>';
+				htmls = htmls + '<p style="margin-top: -4px;color: #666;">报价房型</p>';
+				htmls = htmls + '</div>';
+				htmls = htmls + '</div>';
+				htmls = htmls + '</a>';
+				htmls = htmls + '</li><li style="border-bottom: solid 5px #ededed;width: 100%;height:10px">&nbsp;</li>';
+				var $info = "";
+		    	if(parseInt(msg.length)==0){
+		    		$("#hotelInfos").html('<li><h4 align="center" style="margin-top:20px;margin-bottom:20px">暂无报价数据</h4></li>');
+		    	}else{
+		    		for(var i=0;i<msg.length;i++){
+						if(msg[i].faceImg.indexOf("http")>-1){
+							$info = $info + htmls.replace("~",msg[i].id).replace("~",msg[i].faceImg).replace("~",msg[i].hotelName).replace("~",msg[i].id).replace("~",msg[i].sumHotel).replace("~",Math.round(msg[i].sumPrice)).replace("~",msg[i].types);
+						}else{
+							$info = $info + htmls.replace("~",msg[i].id).replace("~",rootpath+msg[i].faceImg).replace("~",msg[i].hotelName).replace("~",msg[i].id).replace("~",msg[i].sumHotel).replace("~",Math.round(msg[i].sumPrice)).replace("~",msg[i].types);
+						}
+		    		}
+					$("#hotelInfos").html($info);
+		    	}
+				
+		    },
+		    function(e){
+		        hui.iconToast('读取消息失败', 'warn');
+		        console.log(e);
+		    }
+		);
+	}
+  $("#ref").click(function(){
+		location.reload();
+  });
+  function businessMan(id){
+  	localStorage.removeItem("busid");
+  	localStorage.setItem("busid",id);
+  	location.href="businessMan.html";
+  }
+  function types(id){
+  	localStorage.removeItem("itemTypeId");
+  	localStorage.setItem("itemTypeId",id);
+  	location.href="priceInfo.html";
+  }
+</script>
+</html>

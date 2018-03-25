@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<link rel="stylesheet" href="css/amazeui.min.css" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/css/amazeui.min.css" type="text/css" />
+		<link rel="stylesheet" href="css/style.css" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/css/style.css" type="text/css" />
+	</head>
+	<body>
+    <header data-am-widget="header" class="am-header am-header-default jz">
+      <div class="am-header-left am-header-nav">
+         <a href="javascript:history.back()" class="">
+			<i class="am-icon-chevron-left"></i>
+		</a>
+      </div>
+      <h1 class="am-header-title">
+          <a href="#title-link" class="">业主圈</a>
+      </h1>
+      <div class="am-header-right am-header-nav">
+         <a href="sendMsg.html" class="">
+			发表
+		</a>
+      </div>
+    </header>
+	<div class="doc-example">
+		<div style="margin-left: 15px;margin-top: 10px;">
+			<span class="am-icon-spinner am-icon-sm" style="color: #C10802;"></span>
+			<span style="font-family: '微软雅黑';font-weight: 800;">业主娱乐圈</span>
+		</div>
+		<ul class="am-comments-list am-comments-list-flip" id="lists">
+			<!--<li class="am-comment">
+				<a href="#link-to-user-home">
+					<img src="images/logo.png" alt="" class="am-comment-avatar" width="48" height="48">
+				</a>
+				<div class="am-comment-main">
+					<header class="am-comment-hd">
+						<div class="am-comment-meta">
+							<a href="#link-to-user" class="am-comment-author">路人甲</a>  <time datetime="2013-07-27T04:54:29-07:00" title="2013年7月27日 下午7:54 格林尼治标准时间+0800">2014-7-13 0:03</time>
+							<a style="float: right;" onclick="remove(~);"><i class="am-icon-trash-o am-icon-sm" style="color: red;"></i></a>
+						</div>
+					</header>
+					<div class="am-comment-bd">
+						<div style="width: 100%;">
+							<p>She's gone 我早知道</p>
+							<img src="images/banner.png" style="width: 100px;height: 100px;margin-left: 5px;"/>
+						</div>
+						<div style="width: 100%;height: 28px;margin-top: 5px;">
+							<p>
+								<a style="float: right;color: red;" onclick="pinglun(1);"><i class="am-icon-comment-o am-icon-sm" style="color: red;"></i>1</a>
+							</p>
+						</div>
+						<div style="width: 100%;">
+							<p><span style="color: #0084C7;font-size: 12px;">张三</span>：不错哇</p>
+						</div>
+					</div>
+				</div>
+			</li>-->
+		</ul>
+	</div>
+    <div style="height: 52px;"></div>
+	<div data-am-widget="navbar" class="am-navbar  gm-foot am-no-layout" id="">
+		<ul class="am-navbar-nav am-cf am-avg-sm-4">
+			<li>
+				<a href="index.html" class="curr">
+					<span class="am-icon-home"></span>
+					<span class="am-navbar-label">首页</span>
+				</a>
+			</li>
+			<li>
+				<a href="price.html" class="">
+					<span class="am-icon-paypal"></span>
+					<span class="am-navbar-label">报价</span>
+				</a>
+			</li>
+			<li class="curr">
+				<a href="yezhuquan.html" class="">
+					<span class="am-icon-spinner"></span>
+					<span class="am-navbar-label">业主圈</span>
+				</a>
+			</li>
+			<li>
+				<a href="main.html" class="">
+					<span class="am-icon-user"></span>
+					<span class="am-navbar-label">我的</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+	</body>
+	<script type="text/javascript" src="js/jquery.min.js" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/js/jquery.min.js" ></script>
+	<script type="text/javascript" src="js/amazeui.min.js" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/js/amazeui.min.js"></script>
+	<script type="text/javascript" src="js/hui.js"></script>
+	<script>
+		var id = localStorage.getItem("id");
+		if(!id){
+			location.href="login.html";
+		}else{
+			getLists();
+		}
+		function getLists(){
+			hui.postJSON(
+			    rootpath+'/char/myCharList',
+			    {
+			    	id:id
+			    },
+			    function(msg){
+			    	console.log(msg);
+			    	var html = '<li class="am-comment" style="width:95%">';
+			    	var all = "";
+					html = html +'<a onclick="lookInfo(~);"><img src="~" alt="" class="am-comment-avatar" width="48" height="48"></a>';
+					html = html +'<div class="am-comment-main">';
+					html = html +'<header class="am-comment-hd">';
+					html = html +'<div class="am-comment-meta">';
+					html = html +'<a class="am-comment-author">~</a>  <time style="float:right">~</time></div>';
+					html = html +'</header>';
+					html = html +'<div class="am-comment-bd">';
+					html = html +'<p>~</p><a style="float: right;" onclick="remove(~);"><i class="am-icon-trash-o am-icon-sm" style="color: red;"></i></a>';
+					html = html +'</div>';
+					html = html +'</div>';
+					html = html +'</li>';
+			    	if(msg.total==0){
+			    		$("#lists").html('<li><h4 align="center" style="margin-top:20px">暂无数据</h4></li>');
+			    	}else{
+			    		for(var i=0;i<msg.length;i++){
+			              	if(msg[i].businessManVo.faceImg.indexOf("http")>-1){
+			                		all = all + html.replace("~",msg[i].businessManId).replace("~",msg[i].businessManVo.faceImg).replace("~",msg[i].businessManVo.hotelSinName).replace("~",getDates(msg[i].createTime)).replace("~",msg[i].content).replace("~",msg[i].id);
+			                }else{
+			    					all = all + html.replace("~",msg[i].businessManId).replace("~",rootpath+"/"+msg[i].businessManVo.faceImg).replace("~",msg[i].businessManVo.hotelSinName).replace("~",getDates(msg[i].createTime)).replace("~",msg[i].content).replace("~",msg[i].id);
+			                }
+				    	}
+			    		$("#lists").html(all);
+			    	}
+			    	
+			    },
+			    function(e){
+			        hui.iconToast('读取消息失败', 'warn');
+			        console.log(e);
+			    }
+			);
+		}
+      function lookInfo(val){
+      	localStorage.removeItem("busid");
+        localStorage.setItem("busid",val);
+        location.href="businessMan.html";
+      
+      }
+      function remove(id){
+      	hui.confirm('确认删除该业主圈吗？', ['取消','确定'], function(){
+	        hui.getJSON(
+			    rootpath+'/char/deleteChar/'+id,
+			    function(msg){
+			    	if(msg.result=="false"){
+			    		hui.toast("删除失败!", 1000);
+			    	}else{
+			    		hui.toast("删除成功!", 1000);
+			    	}
+			    	getLists();
+			    },
+			    function(e){
+			        hui.iconToast('读取消息失败', 'warn');
+			        console.log(e);
+			    }
+			);
+	    },function(){
+	        console.log('取消后执行...');
+	    });
+      }
+     function pinglun(id){
+     	hui.prompt('请输入评论内容？', ['取消','确定'], function(name){
+	        alert('您输入了 :' + name);
+	    }, '内容', '',function(){
+	    	console.log('您点击了取消')
+	    });
+     }
+	</script>
+</html>
