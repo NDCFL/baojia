@@ -168,6 +168,10 @@
 				hui.toast('酒店热线长度不能超过二十个字符', 1000);
 				return;
 			}
+			if(!phone) {
+				hui.toast('手机号不能为空', 1000);
+				return;
+			}
 			if(phone) {
 				if(phone.length != 11) {
 					hui.toast('联系方式输入有误', 1000);
@@ -192,11 +196,10 @@
 
 				},
 				function(msg) {
-					hui.confirm(msg.message+',是否回到我的主页？', ['取消','确定'], function(){
+					hui.confirm(msg.message+'是否回到我的主页？', ['取消','确定'], function(){
 				        location.href="main.html";
 				    },function(){
 				    	hui.toast(msg.message, 1000);
-				        refush(id);
 				    });
 					
 				},

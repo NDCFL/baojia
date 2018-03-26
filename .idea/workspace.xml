@@ -1,23 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cb61ae6a-888c-4c34-8991-8b72455e1f00" name="Default" comment="1、完善评论">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/txl.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/yzq1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/Thumbs.db" afterPath="$PROJECT_DIR$/images/Thumbs.db" />
+    <list default="true" id="cb61ae6a-888c-4c34-8991-8b72455e1f00" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/baojia.html" afterPath="$PROJECT_DIR$/baojia.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/baojiainfo.html" afterPath="$PROJECT_DIR$/baojiainfo.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/baojiaitem.html" afterPath="$PROJECT_DIR$/baojiaitem.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/businessMan.html" afterPath="$PROJECT_DIR$/businessMan.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/businessManList.html" afterPath="$PROJECT_DIR$/businessManList.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/info.html" afterPath="$PROJECT_DIR$/info.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.html" afterPath="$PROJECT_DIR$/main.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/myinfo.html" afterPath="$PROJECT_DIR$/myinfo.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/price.html" afterPath="$PROJECT_DIR$/price.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/priceInfo.html" afterPath="$PROJECT_DIR$/priceInfo.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yezhuquan.html" afterPath="$PROJECT_DIR$/yezhuquan.html" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -217,7 +203,7 @@
       <workItem from="1521960138256" duration="106000" />
       <workItem from="1521960251114" duration="14000" />
       <workItem from="1521968930454" duration="48000" />
-      <workItem from="1522058012374" duration="4000" />
+      <workItem from="1522058012374" duration="707000" />
     </task>
     <task id="LOCAL-00001" summary="1、完成基础功能">
       <created>1521115055963</created>
@@ -275,11 +261,18 @@
       <option name="project" value="LOCAL" />
       <updated>1521968963521</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="1、完善报价">
+      <created>1522058044358</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1522058044358</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3044000" />
+    <option name="totallyTimeSpent" value="3747000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -351,7 +344,8 @@
     <MESSAGE value="1、完善报价页面" />
     <MESSAGE value="1、完善评论" />
     <MESSAGE value="1、完善商会报价" />
-    <option name="LAST_COMMIT_MESSAGE" value="1、完善商会报价" />
+    <MESSAGE value="1、完善报价" />
+    <option name="LAST_COMMIT_MESSAGE" value="1、完善报价" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
