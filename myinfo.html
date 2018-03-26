@@ -116,6 +116,11 @@
 				rootpath + '/businessMan/findBusinessMan/' + id,
 				function(msg) {
 					console.log(msg);
+					if(msg.isActive!=0){
+						hui.toast('你已被管理员禁用，将无权限访问!', 'warn');
+						location.href="login.html";
+						return;
+					}
 					$("#id").val(msg.id);
 					//$("#myname").html(msg.hotelSinName);
 					//$("#name").html(msg.name);
@@ -187,7 +192,7 @@
 
 				},
 				function(msg) {
-					hui.confirm('修改成功,是否回到我的主页？', ['取消','确定'], function(){
+					hui.confirm(msg.message+',是否回到我的主页？', ['取消','确定'], function(){
 				        location.href="main.html";
 				    },function(){
 				    	hui.toast(msg.message, 1000);

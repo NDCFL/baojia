@@ -53,7 +53,7 @@
             	</li>
               <li>
             		<a href="myMsg.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/money.html">
-            			<img src="images/yzq.png" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/images/i1.png" />
+            			<img src="images/yzq1.png" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/images/i1.png" />
             			<span>我的业主圈</span>
             			<i class="am-icon-angle-right"></i>
             		</a>
@@ -74,8 +74,8 @@
             	</li>
             	<li>
             		<a href="businessManList.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/serveradd.html">
-            			<img src="images/wybj.png" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/images/i2.png" />
-            			<span>商会成员</span>
+            			<img src="images/txl.png" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/images/i2.png" />
+            			<span>商会通讯录</span>
             			<i class="am-icon-angle-right"></i>
             		</a>
             	</li>
@@ -135,14 +135,20 @@
 			hui.getJSON(
 			    rootpath+'/businessMan/findBusinessMan/'+id,
 			    function(msg){
-				  $("#myname").html(msg.hotelSinName);
-				  if(msg.faceImg){
-				    if(msg.faceImg.indexOf("http")>-1){
-					    document.getElementById("myimg").src=msg.faceImg;
-					}else{
-						document.getElementById("myimg").src=rootpath+"/"+msg.faceImg;
+				    if(msg.isActive!=0){
+						hui.toast('你已被管理员禁用，将无权限访问!', 'warn');
+						localStorage.removeItem("id")
+						location.href="login.html";
+						return;
 					}
-				  }
+					$("#myname").html(msg.hotelSinName);
+					if(msg.faceImg){
+						if(msg.faceImg.indexOf("http")>-1){
+							document.getElementById("myimg").src=msg.faceImg;
+						}else{
+							document.getElementById("myimg").src=rootpath+"/"+msg.faceImg;
+						}
+					}
 			    },
 			    function(e){
 			        hui.iconToast('读取消息失败', 'warn');

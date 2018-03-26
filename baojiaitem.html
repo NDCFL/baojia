@@ -208,6 +208,23 @@
 		var id = localStorage.getItem("id");
 		if(!id){
 			location.href="login.html";
+		}else{
+			hui.getJSON(
+				rootpath + '/businessMan/findBusinessMan/' + id,
+				function(msg) {
+					console.log(msg);
+					if(msg.isActive!=0){
+						hui.toast('你已被管理员禁用，将无权限访问!', 'warn');
+						localStorage.removeItem("id")
+						location.href="login.html";
+						return;
+					}
+				},
+				function(e) {
+					hui.iconToast('读取消息失败', 'warn');
+					console.log(e);
+				}
+			);
 		}
 		$(function(){
 			$('#firstSelect').on('click',function (e) {

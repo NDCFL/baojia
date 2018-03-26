@@ -36,36 +36,41 @@
             </ul>
             <div style="height: 49px;"></div>
             <div data-am-widget="navbar" class="am-navbar  gm-foot am-no-layout" id="">
-		      <ul class="am-navbar-nav am-cf am-avg-sm-4">
-		          <li class="curr">
-		            <a href="index.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/index.html" class="curr">
-		                <span class="am-icon-home"></span>
-		                <span class="am-navbar-label">首页</span>
-		            </a>
-		          </li>
-		          <li>
-		            <a href="order.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/order.html" class="">
-		                <span class="am-icon-th-large"></span>
-		                <span class="am-navbar-label">订单</span>
-		            </a>
-		          </li>
-		          <li>
-		            <a href="member.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/member.html" class="">
-		                <span class="am-icon-user"></span>
-		                <span class="am-navbar-label">我的</span>
-		            </a>
-		          </li>
-		          
-		      </ul>
-		  </div>
+				<ul class="am-navbar-nav am-cf am-avg-sm-4">
+					<li>
+						<a href="index.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/index.html" class="curr">
+							<span class="am-icon-home"></span>
+							<span class="am-navbar-label">首页</span>
+						</a>
+					</li>
+					<li>
+						<a href="price.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/order.html" class="">
+							<span class="am-icon-paypal"></span>
+							<span class="am-navbar-label">报价</span>
+						</a>
+					</li>
+					<li>
+						<a href="yezhuquan.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/order.html" class="">
+							<span class="am-icon-spinner"></span>
+							<span class="am-navbar-label">业主圈</span>
+						</a>
+					</li>
+					<li class="curr">
+						<a href="main.html" tppabs="http://yanshi.sucaihuo.com/modals/16/1608/demo/member.html" class="">
+							<span class="am-icon-user"></span>
+							<span class="am-navbar-label">我的</span>
+						</a>
+					</li>
+				</ul>
+			</div>
 	</body>
 	<script type="text/javascript" src="js/hui.js"></script>
 	<script>
 		var html = '<li>';
-		html = html + '<a onclick="lookInfo(~);">';
-		html = html + '<img src="~" />';
-		html = html + '<span>~</span>';
-		html = html + '<i class="am-icon-angle-right"></i>';
+		html = html + '<a>';
+		html = html + '<img src="~" onclick="lookInfo(~);"/>';
+		html = html + '<span onclick="lookInfo(~);">~</span>';
+		html = html + '<span style="float:right;"><i class="am-icon-angle-right"></i></span><span style="float:right;color:#009cff" onclick="lookPrice(~);">Ta的报价</span>';
 		html = html + '</a>';
 		html = html + '</li>';
 		list("");
@@ -79,7 +84,14 @@
 			    	console.log(msg);
 				  	var all = '';
 				  	for(var i=0;i<msg.length;i++){
-				  		all = all + html.replace("~",msg[0].id).replace("~",rootpath+msg[i].faceImg).replace("~",msg[i].hotelSinName);
+                      	if(!msg[i].faceImg){
+                           msg[i].faceImg = "/upload/face.gif";
+                        }
+						if(msg[i].faceImg.indexOf("http")>-1){
+                           	all = all + html.replace("~",msg[i].faceImg).replace("~",msg[i].id).replace("~",msg[i].id).replace("~",msg[i].hotelSinName).replace("~",msg[i].id);
+                        }else{
+                        	all = all + html.replace("~",rootpath+msg[i].faceImg).replace("~",msg[i].id).replace("~",msg[i].id).replace("~",msg[i].hotelSinName).replace("~",msg[i].id);   
+                        }
 				  	}
 				  	$(".nav").html(all);
 			    },
@@ -98,6 +110,12 @@
 		    localStorage.removeItem("busid");
 		    localStorage.setItem("busid",val);
 		    location.href="businessMan.html";
-		  }
+		}
+		function lookPrice(val){
+			localStorage.removeItem("itemTypeId");
+		    localStorage.setItem("itemTypeId",val);
+		    location.href="priceInfo.html";
+			
+		}
 	</script>
 </html>
